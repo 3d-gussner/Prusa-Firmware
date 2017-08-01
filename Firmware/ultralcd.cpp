@@ -730,7 +730,7 @@ void lcd_commands()
 			lcd_commands_step = 5;
 			#endif
 			#ifdef DEFAULT_PID_BED_TEMP
-			lcd_commands_step = lcd_commands_step+1
+			lcd_commands_step = lcd_commands_step+1;
 			#endif
 		}
 
