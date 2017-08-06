@@ -2144,8 +2144,8 @@ void process_commands()
       if(Stopped == false) {
 
         #ifdef FILAMENT_RUNOUT_SUPPORT
-            
-            if(READ(FR_SENS)){
+            bool FR_SENS_INV_CORRECTED=(READ(FR_SENS) != FR_SENS_INVERTING);
+            if(FR_SENS_INV_CORRECTED){
 
                         feedmultiplyBckp=feedmultiply;
                         float target[4];
