@@ -255,6 +255,13 @@ bool homing_flag = false;
 
 bool temp_cal_active = false;
 
+// FR_SENS
+bool fr_sens_active = false;
+bool FR_SENS_INVERTING = true;
+bool fr_sens_inv = true;
+bool FR_SENS_PU = false;
+// end FR_SENS
+
 unsigned long kicktime = millis()+100000;
 
 unsigned int  usb_printing_counter;
@@ -1231,6 +1238,11 @@ void setup()
       lcd_show_fullscreen_message_and_wait_P(MSG_FOLLOW_CALIBRATION_FLOW);
   }
   for (int i = 0; i<4; i++) EEPROM_read_B(EEPROM_BOWDEN_LENGTH + i * 2, &bowden_length[i]);
+
+  //FR_SENS
+  fr_sens_active = eeprom_read_byte((uint8_t*)EEPROM_FR_SENS_ACTIVE);
+  FR_SENS_INVERTING = eeprom_read_byte((uint8_t*)EEPROM_FR_SENS_INVERTING);
+  FR_SENS_PU = eeprom_read_byte((uint8_t*)EEPROM_FR_SENS_PU);
   
   //If eeprom version for storing parameters to eeprom using M500 changed, default settings are used. Inform user in this case
   if (!previous_settings_retrieved) {
@@ -2058,6 +2070,11 @@ void process_commands()
 {
   #ifdef FILAMENT_RUNOUT_SUPPORT
     SET_INPUT(FR_SENS);
+    if (FR_SENS_PU) {
+      pinMode(FR_SENS, INPUT_PULLUP);
+    } else {
+      pinMode(FR_SENS, INPUT);
+    }
   #endif
 
 #ifdef CMDBUFFER_DEBUG
@@ -2196,10 +2213,8 @@ void process_commands()
     case 1: // G1
       if(Stopped == false) {
 
-        #ifdef FILAMENT_RUNOUT_SUPPORT
-            
-            if(READ(FR_SENS)){
-
+        #ifdef FILAMENT_RUNOUT_SUPPORT     
+          if(((digitalRead(FR_SENS) == HIGH) != FR_SENS_INVERTING) && fr_sens_active) {
                         feedmultiplyBckp=feedmultiply;
                         float target[4];
                         float lastpos[4];
@@ -2363,10 +2378,7 @@ void process_commands()
                         sprintf_P(cmd, PSTR("M220 S%i"), feedmultiplyBckp);
                         enquecommand(cmd);
 
-            }
-
-
-
+          }
         #endif
 
 
@@ -4544,7 +4556,7 @@ Sigma_Exit:
         }
         SERIAL_PROTOCOLLN("");
       #endif
-	  #if defined(FR_SENS) && FR_SENS > -1
+	    #if fr_sens_active && defined(FR_SENS) && FR_SENS > -1
         SERIAL_PROTOCOLRPGM(MSG_Y_MAX);
         if(READ(FR_SENS)^FR_SENS_INVERTING){
           SERIAL_PROTOCOLRPGM(MSG_ENDSTOP_HIT);

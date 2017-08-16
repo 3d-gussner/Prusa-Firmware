@@ -134,6 +134,7 @@ void Config_StoreSettings()
   MYSERIAL.print(i);
   MYSERIAL.print("\n");
   */
+  
   char ver2[4]=EEPROM_VERSION;
   i=EEPROM_OFFSET;
   EEPROM_WRITE_VAR(i,ver2); // validate data

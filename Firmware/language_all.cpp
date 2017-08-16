@@ -1368,6 +1368,56 @@ const char * const MSG_FREE_MEMORY_LANG_TABLE[1] PROGMEM = {
 	MSG_FREE_MEMORY_EN
 };
 
+const char MSG_FR_SENS_EN[] PROGMEM = "fr_sens: ";
+const char * const MSG_FR_SENS_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_EN
+};
+
+const char MSG_FR_SENS_ACTIVE_OFF_EN[] PROGMEM = "Sens Runout [OFF]";
+const char * const MSG_FR_SENS_ACTIVE_OFF_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_ACTIVE_OFF_EN
+};
+
+const char MSG_FR_SENS_ACTIVE_ON_EN[] PROGMEM = "Sens Runout  [ON]";
+const char * const MSG_FR_SENS_ACTIVE_ON_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_ACTIVE_ON_EN
+};
+
+const char MSG_FR_SENS_HIT_EN[] PROGMEM = "Filament deteced";
+const char * const MSG_FR_SENS_HIT_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_HIT_EN
+};
+
+const char MSG_FR_SENS_INVERTING_OFF_EN[] PROGMEM = "FR_Sens[S to GND]";
+const char * const MSG_FR_SENS_INVERTING_OFF_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_INVERTING_OFF_EN
+};
+
+const char MSG_FR_SENS_INVERTING_ON_EN[] PROGMEM = "FR_Sens[S to VCC]";
+const char * const MSG_FR_SENS_INVERTING_ON_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_INVERTING_ON_EN
+};
+
+const char MSG_FR_SENS_PU_ON_EN[] PROGMEM = "Pullup [ON]";
+const char * const MSG_FR_SENS_PU_ON_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_PU_ON_EN
+};
+
+const char MSG_FR_SENS_PU_OFF_EN[] PROGMEM = "Pullup [Off]";
+const char * const MSG_FR_SENS_PU_OFF_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_PU_OFF_EN
+};
+
+const char MSG_FR_SENS_OPEN_EN[] PROGMEM = "Filament runout";
+const char * const MSG_FR_SENS_OPEN_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_OPEN_EN
+};
+
+const char MSG_FR_SENS_SETTINGS_EN[] PROGMEM = "Filament Sensor";
+const char * const MSG_FR_SENS_SETTINGS_LANG_TABLE[1] PROGMEM = {
+  MSG_FR_SENS_SETTINGS_EN
+};
+
 const char MSG_HEATING_EN[] PROGMEM = "Heating";
 const char MSG_HEATING_CZ[] PROGMEM = "Zahrivani";
 const char MSG_HEATING_IT[] PROGMEM = "Riscaldamento...";

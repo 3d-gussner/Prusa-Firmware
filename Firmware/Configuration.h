@@ -48,6 +48,12 @@
 #define EEPROM_BOWDEN_LENGTH (EEPROM_TEMP_CAL_ACTIVE - 2*4) //4 x int for bowden lengths for multimaterial
 #define EEPROM_CALIBRATION_STATUS_PINDA (EEPROM_BOWDEN_LENGTH - 1) //0 - not calibrated; 1 - calibrated
 
+//FR_SENS
+#define EEPROM_FR_SENS_ACTIVE (EEPROM_CALIBRATION_STATUS_PINDA - 1) //0 - filament runout sensor disabled; 1 - .. activated
+#define EEPROM_FR_SENS_INVERTING (EEPROM_FR_SENS_ACTIVE - 1) //0 - filament runout sensor inverted; 1 - .. normal
+#define EEPROM_FR_SENS_PU (EEPROM_FR_SENS_INVERTING - 1) //0 - filament runout sensor pullup; 0 - .. normal
+//FR_SENS
+
 // Currently running firmware, each digit stored as uint16_t.
 // The flavor differentiates a dev, alpha, beta, release candidate or a release version.
 #define EEPROM_FIRMWARE_VERSION_END       (FW_PRUSA3D_MAGIC_LEN+8)

@@ -134,6 +134,10 @@
 #define MSG_M119_REPORT                     "Reporting endstop status"
 #define MSG_ENDSTOP_HIT                     "TRIGGERED"
 #define MSG_ENDSTOP_OPEN                    "open"
+// FR_SENS
+#define MSG_FR_SENS_HIT            "Filament detected"
+#define MSG_FR_SENS_OPEN          "Filament runout"
+// FR_SENS
 
 #define MSG_SD_CANT_OPEN_SUBDIR             "Cannot open subdir"
 #define MSG_SD_INIT_FAIL                    "SD init fail"
@@ -315,3 +319,11 @@
 #define(length=15, lines=1) MSG_SLIGHT_SKEW						"Slight skew:"
 #define(length=15, lines=1) MSG_SEVERE_SKEW						"Severe skew:"
 #define(length=20, lines=4) MSG_DEFAULT_SETTINGS_LOADED			"Default settings loaded"
+//FR_SENS
+#define(length=20) MSG_FR_SENS_SETTINGS               "Filament Sensor"
+#define(length=20) MSG_FR_SENS_ACTIVE_ON              "Sens Runout  [ON]"
+#define(length=20) MSG_FR_SENS_ACTIVE_OFF             "Sens Runout [OFF]"
+#define(length=20) MSG_FR_SENS_PU_ON                  "Pullup       [ON]"
+#define(length=20) MSG_FR_SENS_PU_OFF                 "Pullup      [OFF]"
+#define(length=20) MSG_FR_SENS_INVERTING_ON           "FR_Sens[S to VCC]"
+#define(length=20) MSG_FR_SENS_INVERTING_OFF          "FR_Sens[S to GND]"
