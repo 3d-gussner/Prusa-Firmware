@@ -978,6 +978,7 @@ void st_init()
     current_adv_steps = 0;
   #endif
 
+
   enable_endstops(true); // Start with endstops active. After homing they can be disabled
   sei();
 }

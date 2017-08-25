@@ -145,9 +145,9 @@ CHANGE FILAMENT SETTINGS
 // Filament change configuration
 #define FILAMENTCHANGEENABLE
 #ifdef FILAMENTCHANGEENABLE
-#define FILAMENTCHANGE_XPOS 211
-#define FILAMENTCHANGE_YPOS 0
-#define FILAMENTCHANGE_ZADD 2
+#define FILAMENTCHANGE_XPOS 0
+#define FILAMENTCHANGE_YPOS -2.2
+#define FILAMENTCHANGE_ZADD 20
 #define FILAMENTCHANGE_FIRSTRETRACT -2
 #define FILAMENTCHANGE_FINALRETRACT -80
 
@@ -168,7 +168,8 @@ ADDITIONAL FEATURES SETTINGS
 *------------------------------------*/
 
 // Define Prusa filament runout sensor
-//#define FILAMENT_RUNOUT_SUPPORT
+#define FILAMENT_RUNOUT_SUPPORT
+const bool FR_SENS_INVERTING = true; // set to true to invert the logic of the filament runout.
 
 #ifdef FILAMENT_RUNOUT_SUPPORT
 #define FILAMENT_RUNOUT_SENSOR 1
@@ -391,6 +392,7 @@ THERMISTORS SETTINGS
 #define BUTTON_BLANKING_TIME 200 //time in ms for blanking after button release
 
 #define DEFAULT_PID_TEMP 210
+#define DEFAULT_PID_BED_TEMP 55
 
 #ifdef SNMM
 #define DEFAULT_RETRACTION 4 //used for PINDA temp calibration and pause print

@@ -254,6 +254,13 @@ bool homing_flag = false;
 
 bool temp_cal_active = false;
 
+// FR_SENS
+bool fr_sens_active = false;
+bool FR_SENS_INVERTING = true;
+bool fr_sens_inv = true;
+bool FR_SENS_PU = false;
+// end FR_SENS
+
 unsigned long kicktime = millis()+100000;
 
 unsigned int  usb_printing_counter;
@@ -1053,6 +1060,7 @@ void setup()
 	SERIAL_ECHOLNPGM(STRING_CONFIG_H_AUTHOR);
 	SERIAL_ECHOPGM("Compiled: ");
 	SERIAL_ECHOLNPGM(__DATE__);
+	SERIAL_ECHOLNPGM(__TIME__);
 #endif
 #endif
 
@@ -1233,6 +1241,11 @@ void setup()
       lcd_show_fullscreen_message_and_wait_P(MSG_FOLLOW_CALIBRATION_FLOW);
   }
   for (int i = 0; i<4; i++) EEPROM_read_B(EEPROM_BOWDEN_LENGTH + i * 2, &bowden_length[i]);
+
+  //FR_SENS
+  fr_sens_active = eeprom_read_byte((uint8_t*)EEPROM_FR_SENS_ACTIVE);
+  FR_SENS_INVERTING = eeprom_read_byte((uint8_t*)EEPROM_FR_SENS_INVERTING);
+  FR_SENS_PU = eeprom_read_byte((uint8_t*)EEPROM_FR_SENS_PU);
   
   //If eeprom version for storing parameters to eeprom using M500 changed, default settings are used. Inform user in this case
   if (!previous_settings_retrieved) {
@@ -2060,6 +2073,11 @@ void process_commands()
 {
   #ifdef FILAMENT_RUNOUT_SUPPORT
     SET_INPUT(FR_SENS);
+    if (FR_SENS_PU) {
+      pinMode(FR_SENS, INPUT_PULLUP);
+    } else {
+      pinMode(FR_SENS, INPUT);
+    }
   #endif
 
 #ifdef CMDBUFFER_DEBUG
@@ -2173,7 +2191,7 @@ void process_commands()
         return;
     } else if (code_seen("SERIAL HIGH")) {
         MYSERIAL.println("SERIAL HIGH");
-        MYSERIAL.begin(1152000);
+        MYSERIAL.begin(2500000);
         return;
     } else if(code_seen("Beat")) {
         // Kick farm link timer
@@ -2198,10 +2216,8 @@ void process_commands()
     case 1: // G1
       if(Stopped == false) {
 
-        #ifdef FILAMENT_RUNOUT_SUPPORT
-            
-            if(READ(FR_SENS)){
-
+        #ifdef FILAMENT_RUNOUT_SUPPORT     
+          if(((digitalRead(FR_SENS) == HIGH) != FR_SENS_INVERTING) && fr_sens_active) {
                         feedmultiplyBckp=feedmultiply;
                         float target[4];
                         float lastpos[4];
@@ -2365,10 +2381,7 @@ void process_commands()
                         sprintf_P(cmd, PSTR("M220 S%i"), feedmultiplyBckp);
                         enquecommand(cmd);
 
-            }
-
-
-
+          }
         #endif
 
 
@@ -4546,6 +4559,15 @@ Sigma_Exit:
         }
         SERIAL_PROTOCOLLN("");
       #endif
+	    #if fr_sens_active && defined(FR_SENS) && FR_SENS > -1
+        SERIAL_PROTOCOLRPGM(MSG_Y_MAX);
+        if(READ(FR_SENS)^FR_SENS_INVERTING){
+          SERIAL_PROTOCOLRPGM(MSG_ENDSTOP_HIT);
+        }else{
+          SERIAL_PROTOCOLRPGM(MSG_ENDSTOP_OPEN);
+        }
+        SERIAL_PROTOCOLLN("");
+      #endif
       break;
       //TODO: update for all axis, use for loop
     #ifdef BLINKM
@@ -4987,7 +5009,7 @@ Sigma_Exit:
     {
       float temp = 150.0;
       int e=0;
-      int c=5;
+      int c=8;
       if (code_seen('E')) e=code_value();
         if (e<0)
           temp=70;
@@ -5629,8 +5651,7 @@ case 404:  //M404 Enter the nominal filament width (3mm, 1.75mm ) N<3.0> or disp
 
 		  pinMode(E_MUX0_PIN, OUTPUT);
 		  pinMode(E_MUX1_PIN, OUTPUT);
-		  pinMode(E_MUX2_PIN, OUTPUT);
-
+		  
 		  delay(100);
 		  SERIAL_ECHO_START;
 		  SERIAL_ECHO("T:");
@@ -5639,26 +5660,22 @@ case 404:  //M404 Enter the nominal filament width (3mm, 1.75mm ) N<3.0> or disp
 		  case 1:
 			  WRITE(E_MUX0_PIN, HIGH);
 			  WRITE(E_MUX1_PIN, LOW);
-			  WRITE(E_MUX2_PIN, LOW);
-
+			  
 			  break;
 		  case 2:
 			  WRITE(E_MUX0_PIN, LOW);
 			  WRITE(E_MUX1_PIN, HIGH);
-			  WRITE(E_MUX2_PIN, LOW);
-
+			  
 			  break;
 		  case 3:
 			  WRITE(E_MUX0_PIN, HIGH);
 			  WRITE(E_MUX1_PIN, HIGH);
-			  WRITE(E_MUX2_PIN, LOW);
-
+			  
 			  break;
 		  default:
 			  WRITE(E_MUX0_PIN, LOW);
 			  WRITE(E_MUX1_PIN, LOW);
-			  WRITE(E_MUX2_PIN, LOW);
-
+			  
 			  break;
 		  }
 		  delay(100);

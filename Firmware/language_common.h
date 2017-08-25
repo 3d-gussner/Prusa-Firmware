@@ -42,6 +42,10 @@ define MSG_Y_MAX                           "y_max: "
 define MSG_Z_MIN                           "z_min: "
 define MSG_Z_MAX                           "z_max: "
 
+// FR_SENS
+define MSG_FR_SENS                         "fr_sens: "
+// FR_SENS
+
 +define MSG_M119_REPORT                     "Reporting endstop status"
 +define MSG_ENDSTOP_HIT                     "TRIGGERED"
 +define MSG_ENDSTOP_OPEN                    "open"

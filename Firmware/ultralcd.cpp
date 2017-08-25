@@ -96,6 +96,14 @@ int8_t SDscrool = 0;
 
 int8_t SilentModeMenu = 0;
 
+// FR_SENS
+#ifdef FILAMENT_RUNOUT_SUPPORT
+static void lcd_fr_sens_settings_menu();
+static void lcd_fr_sens_active_set();
+static void lcd_fr_sens_inverting_set();
+static void lcd_fr_sens_pu_set();
+#endif
+
 #ifdef SNMM
 uint8_t snmm_extruder = 0;
 #endif
@@ -112,6 +120,7 @@ bool printer_connected = true;
 
 unsigned long display_time; //just timer for showing pid finished message on lcd;
 float pid_temp = DEFAULT_PID_TEMP;
+float pid_bed_temp = DEFAULT_PID_BED_TEMP;
 
 bool long_press_active = false;
 long long_press_timer = millis();
@@ -728,6 +737,9 @@ void lcd_commands()
 			#else
 			lcd_commands_step = 5;
 			#endif
+			#ifdef DEFAULT_PID_BED_TEMP
+			lcd_commands_step = lcd_commands_step+1;
+			#endif
 		}
 
 	}
@@ -772,7 +784,49 @@ void lcd_commands()
 			lcd_commands_type = 0;
 		}
 	}
-
+#ifdef DEFAULT_PID_BED_TEMP
+	if (lcd_commands_type == LCD_COMMAND_PID_BED) {
+		char cmd1[30];
+		
+		if (lcd_commands_step == 0) {
+			custom_message_type = 3;
+			custom_message_state = 1;
+			custom_message = true;
+			lcdDrawUpdate = 3;
+			lcd_commands_step = 3;
+		}
+		if (lcd_commands_step == 3 && !blocks_queued()) { //PID calibration
+			strcpy(cmd1, "M303 E-1 S");
+			strcat(cmd1, ftostr3(pid_bed_temp));
+			enquecommand(cmd1);
+			lcd_setstatuspgm(MSG_PID_BED_RUNNING);
+			lcd_commands_step = 2;
+		}
+		if (lcd_commands_step == 2 && pid_tuning_finished) { //saving to eeprom
+			pid_tuning_finished = false;
+			custom_message_state = 0;
+			lcd_setstatuspgm(MSG_PID_BED_FINISHED);
+			strcpy(cmd1, "M304 P");
+			strcat(cmd1, ftostr32(_Kp));
+			strcat(cmd1, " I");
+			strcat(cmd1, ftostr32(_Ki));
+			strcat(cmd1, " D");
+			strcat(cmd1, ftostr32(_Kd));
+			enquecommand(cmd1);
+			enquecommand_P(PSTR("M500"));
+			display_time = millis();
+			lcd_commands_step = 1;
+		}
+		if ((lcd_commands_step == 1) && ((millis()- display_time)>2000)) { //calibration finished message
+			lcd_setstatuspgm(WELCOME_MSG);
+			custom_message_type = 0;
+			custom_message = false;
+			pid_temp = DEFAULT_PID_BED_TEMP;
+			lcd_commands_step = 0;
+			lcd_commands_type = 0;
+		}
+	}
+#endif
 
 }
 
@@ -879,8 +933,8 @@ static void lcd_preheat_menu()
 
   MENU_ITEM(back, MSG_MAIN, lcd_main_menu);
 
-  MENU_ITEM(function, PSTR("ABS  -  " STRINGIFY(ABS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(ABS_PREHEAT_HPB_TEMP)), lcd_preheat_abs);
   MENU_ITEM(function, PSTR("PLA  -  " STRINGIFY(PLA_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PLA_PREHEAT_HPB_TEMP)), lcd_preheat_pla);
+  MENU_ITEM(function, PSTR("ABS  -  " STRINGIFY(ABS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(ABS_PREHEAT_HPB_TEMP)), lcd_preheat_abs);
   MENU_ITEM(function, PSTR("PET  -  " STRINGIFY(PET_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PET_PREHEAT_HPB_TEMP)), lcd_preheat_pet);
   MENU_ITEM(function, PSTR("HIPS -  " STRINGIFY(HIPS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(HIPS_PREHEAT_HPB_TEMP)), lcd_preheat_hips);
   MENU_ITEM(function, PSTR("PP   -  " STRINGIFY(PP_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PP_PREHEAT_HPB_TEMP)), lcd_preheat_pp);
@@ -932,6 +986,8 @@ static void lcd_support_menu()
   MENU_ITEM(back, PSTR("------------"), lcd_main_menu);
   MENU_ITEM(back, MSG_DATE, lcd_main_menu);
   MENU_ITEM(back, PSTR(__DATE__), lcd_main_menu);
+  MENU_ITEM(back, PSTR(__TIME__), lcd_main_menu);
+  MENU_ITEM(back, PSTR(STRING_CONFIG_H_AUTHOR), lcd_main_menu);
 
   // Show the FlashAir IP address, if the card is available.
   if (menuData.supportMenu.is_flash_air) {
@@ -1590,6 +1646,26 @@ void pid_extruder() {
 	}
 
 }
+#ifdef DEFAULT_PID_BED_TEMP
+void pid_bed() {
+
+	lcd_implementation_clear();
+	lcd.setCursor(1, 0);
+	lcd_printPGM(MSG_SET_TEMPERATURE);
+	pid_bed_temp += int(encoderPosition);
+	if (pid_bed_temp > BED_MAXTEMP) pid_bed_temp = BED_MAXTEMP;
+	if (pid_bed_temp < BED_MINTEMP) pid_bed_temp = BED_MINTEMP;
+	encoderPosition = 0;
+	lcd.setCursor(1, 2);
+	lcd.print(ftostr3(pid_bed_temp));
+	if (lcd_clicked()) {
+		lcd_commands_type = LCD_COMMAND_PID_BED;
+		lcd_return_to_status();
+		lcd_update(2);
+	}
+
+}
+#endif
 
 void lcd_adjust_z() {
   int enc_dif = 0;
@@ -2007,13 +2083,17 @@ void lcd_bed_calibration_show_result(BedSkewOffsetDetectionResultType result, ui
 
 static void lcd_show_end_stops() {
     lcd.setCursor(0, 0);
-    lcd_printPGM((PSTR("End stops diag")));
+    lcd_printPGM((PSTR("End stops/sens diag")));
     lcd.setCursor(0, 1);
     lcd_printPGM((READ(X_MIN_PIN) ^ X_MIN_ENDSTOP_INVERTING == 1) ? (PSTR("X1")) : (PSTR("X0")));
     lcd.setCursor(0, 2);
     lcd_printPGM((READ(Y_MIN_PIN) ^ Y_MIN_ENDSTOP_INVERTING == 1) ? (PSTR("Y1")) : (PSTR("Y0")));
     lcd.setCursor(0, 3);
     lcd_printPGM((READ(Z_MIN_PIN) ^ Z_MIN_ENDSTOP_INVERTING == 1) ? (PSTR("Z1")) : (PSTR("Z0")));
+    if (fr_sens_active) {
+		    lcd.setCursor(4, 1);
+		    lcd_printPGM(((digitalRead(FR_SENS) == HIGH) != FR_SENS_INVERTING) ? (PSTR("FR_S1")) : (PSTR("FR_S0")));
+    }
 }
 
 static void menu_show_end_stops() {
@@ -2610,6 +2690,58 @@ void lcd_toshiba_flash_air_compatibility_toggle()
    eeprom_update_byte((uint8_t*)EEPROM_TOSHIBA_FLASH_AIR_COMPATIBLITY, card.ToshibaFlashAir_isEnabled());
 }
 
+// FR_SENS
+void lcd_fr_sens_settings_menu()
+{
+  START_MENU();
+    MENU_ITEM(back, MSG_SETTINGS, lcd_settings_menu);
+    /* debug info
+    lcd.setCursor(1, 5);
+    lcd_printPGM((fr_sens_active == 1) ? (PSTR("FR_S_ON")) : (PSTR("FR_S_OFF")));
+    lcd.setCursor(10, 5);
+    lcd_printPGM((FR_SENS_INVERTING == 0) ? (PSTR("FR_I_ON")) : (PSTR("FR_I_OFF")));
+    // end debug info*/   
+    if (fr_sens_active == false) {
+      MENU_ITEM(function, MSG_FR_SENS_ACTIVE_OFF, lcd_fr_sens_active_set);
+    } else {
+      MENU_ITEM(function, MSG_FR_SENS_ACTIVE_ON, lcd_fr_sens_active_set);
+      if (FR_SENS_INVERTING == false) {
+        MENU_ITEM(function, MSG_FR_SENS_INVERTING_OFF, lcd_fr_sens_inverting_set);
+        if (FR_SENS_PU == false) {
+          MENU_ITEM(function, MSG_FR_SENS_PU_OFF, lcd_fr_sens_pu_set);
+        } else {
+          MENU_ITEM(function, MSG_FR_SENS_PU_ON, lcd_fr_sens_pu_set);
+        }
+      } else {
+        MENU_ITEM(function, MSG_FR_SENS_INVERTING_ON, lcd_fr_sens_inverting_set);
+      }
+
+    }
+  END_MENU();
+}
+
+  void lcd_fr_sens_active_set() {
+    fr_sens_active = !fr_sens_active;
+    eeprom_update_byte((unsigned char *)EEPROM_FR_SENS_ACTIVE, fr_sens_active);
+    digipot_init();
+    lcd_goto_menu(lcd_fr_sens_settings_menu, 1);
+  }
+
+  void lcd_fr_sens_inverting_set() {
+    FR_SENS_INVERTING = !FR_SENS_INVERTING;
+    eeprom_update_byte((unsigned char *)EEPROM_FR_SENS_INVERTING, FR_SENS_INVERTING);
+    digipot_init();
+    lcd_goto_menu(lcd_fr_sens_settings_menu, 2);
+  }
+
+  void lcd_fr_sens_pu_set() {
+      FR_SENS_PU = !FR_SENS_PU;
+      eeprom_update_byte((unsigned char *)EEPROM_FR_SENS_PU, FR_SENS_PU);
+      digipot_init();
+      lcd_goto_menu(lcd_fr_sens_settings_menu, 3);
+  }
+  // end FR_SENS
+
 static void lcd_settings_menu()
 {
   EEPROM_read(EEPROM_SILENT, (uint8_t*)&SilentModeMenu, sizeof(SilentModeMenu));
@@ -2650,7 +2782,11 @@ static void lcd_settings_menu()
         MENU_ITEM(submenu, PSTR("Farm number"), lcd_farm_no);
 		MENU_ITEM(function, PSTR("Disable farm mode"), lcd_disable_farm_mode);
     }
-
+    // FR_SENS
+    #ifdef FR_SENS
+        MENU_ITEM(submenu, MSG_FR_SENS_SETTINGS, lcd_fr_sens_settings_menu);
+    #endif
+    // end FR_SENS 
 	END_MENU();
 }
 
@@ -2683,6 +2819,9 @@ MENU_ITEM(function, MSG_CALIBRATE_BED, lcd_mesh_calibration);
 	MENU_ITEM(submenu, MSG_CALIBRATION_PINDA_MENU, lcd_pinda_calibration_menu);
 #endif //MK1BP
 	MENU_ITEM(submenu, MSG_PID_EXTRUDER, pid_extruder);
+#ifdef DEFAULT_PID_BED_TEMP
+	MENU_ITEM(submenu, MSG_PID_BED, pid_bed);
+#endif
     MENU_ITEM(submenu, MSG_SHOW_END_STOPS, menu_show_end_stops);
 #ifndef MK1BP
     MENU_ITEM(gcode, MSG_CALIBRATE_BED_RESET, PSTR("M44"));
@@ -3264,31 +3403,26 @@ void change_extr(int extr) { //switches multiplexer for extruders
 
 	pinMode(E_MUX0_PIN, OUTPUT);
 	pinMode(E_MUX1_PIN, OUTPUT);
-	pinMode(E_MUX2_PIN, OUTPUT);
 
 	switch (extr) {
 	case 1:
 		WRITE(E_MUX0_PIN, HIGH);
 		WRITE(E_MUX1_PIN, LOW);
-		WRITE(E_MUX2_PIN, LOW);
 		
 		break;
 	case 2:
 		WRITE(E_MUX0_PIN, LOW);
 		WRITE(E_MUX1_PIN, HIGH);
-		WRITE(E_MUX2_PIN, LOW);
 		
 		break;
 	case 3:
 		WRITE(E_MUX0_PIN, HIGH);
 		WRITE(E_MUX1_PIN, HIGH);
-		WRITE(E_MUX2_PIN, LOW);
 		
 		break;
 	default:
 		WRITE(E_MUX0_PIN, LOW);
 		WRITE(E_MUX1_PIN, LOW);
-		WRITE(E_MUX2_PIN, LOW);
 		
 		break;
 	}
@@ -3296,7 +3430,7 @@ void change_extr(int extr) { //switches multiplexer for extruders
 }
 
 static int get_ext_nr() { //reads multiplexer input pins and return current extruder number (counted from 0)
-	return(4 * READ(E_MUX2_PIN) + 2 * READ(E_MUX1_PIN) + READ(E_MUX0_PIN));
+	return(2 * READ(E_MUX1_PIN) + READ(E_MUX0_PIN));
 }
 
 
@@ -4968,6 +5102,7 @@ static void menu_action_sdfile(const char* filename, char* longFilename)
   for (c = &cmd[4]; *c; c++)
     *c = tolower(*c);
   enquecommand(cmd);
+
   enquecommand_P(PSTR("M24"));
   lcd_return_to_status();
 }
