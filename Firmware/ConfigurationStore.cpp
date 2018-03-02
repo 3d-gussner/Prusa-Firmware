@@ -131,8 +131,7 @@ void Config_StoreSettings(uint16_t offset, uint8_t level)
 
 #ifdef LIN_ADVANCE
   if (level >= 10) {
-	  EEPROM_WRITE_VAR(i, extruder_advance_k);
-	  EEPROM_WRITE_VAR(i, advance_ed_ratio);
+	  EEPROM_WRITE_VAR(i, extruder_advance_K);
   }
 #endif //LIN_ADVANCE
 
@@ -278,8 +277,7 @@ void Config_PrintSettings(uint8_t level)
 #ifdef LIN_ADVANCE
 		SERIAL_ECHO_START;
 		SERIAL_ECHOLNPGM("Linear advance settings:");
-		SERIAL_ECHOPAIR("   M900 K", extruder_advance_k);
-		SERIAL_ECHOPAIR("   E/D = ", advance_ed_ratio);
+		SERIAL_ECHOPAIR("   M900 K", extruder_advance_K);
 #endif //LIN_ADVANCE
 	}
 }
@@ -375,10 +373,9 @@ bool Config_RetrieveSettings(uint16_t offset, uint8_t level)
 #endif
 #ifdef LIN_ADVANCE
 		if (level >= 10) {
-			EEPROM_READ_VAR(i, extruder_advance_k);
-			EEPROM_READ_VAR(i, advance_ed_ratio);
+			EEPROM_READ_VAR(i, extruder_advance_K);
 		}
-		calculate_volumetric_multipliers();
+		calculate_extruder_multipliers();
 #endif //LIN_ADVANCE
 
 		// Call updatePID (similar to when we have processed M301)

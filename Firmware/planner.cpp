@@ -750,7 +750,6 @@ void plan_buffer_line(float x, float y, float z, const float &e, float feed_rate
       position[E_AXIS]=target[E_AXIS]; //behave as if the move really took place, but ignore E part
 #ifdef LIN_ADVANCE
         position_float[E_AXIS] = e;
-        de_float = 0;
 #endif
       SERIAL_ECHO_START;
       SERIAL_ECHOLNRPGM(MSG_ERR_LONG_EXTRUDE_STOP);

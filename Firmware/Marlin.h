@@ -76,6 +76,7 @@ extern FILE _uartout;
 #define SERIAL_PROTOCOLLNPGM(x) (serialprintPGM(PSTR(x)),MYSERIAL.write('\n'))
 #define SERIAL_PROTOCOLLNRPGM(x) (serialprintPGM((x)),MYSERIAL.write('\n'))
 
+#define NOMORE(v,n) do{ if (v > n) v = n; }while(0)
 
 extern const char errormagic[] PROGMEM;
 extern const char echomagic[] PROGMEM;

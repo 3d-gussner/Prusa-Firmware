@@ -772,8 +772,8 @@ void isr() {
                       }
                 else {
                   eISR_Rate = ADV_NEVER;
-                  if (e_steps) nextAdvanceISR = 0;}
-        }
+                  if (e_steps) nextAdvanceISR = 0;
+                 }
 #endif
     }
     else if (step_events_completed > (unsigned long int)current_block->decelerate_after) {
@@ -804,7 +804,7 @@ void isr() {
                           }
                 else {
                   eISR_Rate = ADV_NEVER;
-                  if (e_steps) nextAdvanceISR = 0;}
+                  if (e_steps) nextAdvanceISR = 0;
 
         }
 #endif
@@ -893,7 +893,7 @@ void advance_isr() {
       ? INVERT_E0_DIR : !INVERT_E0_DIR; //If we have SNMM, reverse every second extruder.
       WRITE_NC(E0_DIR_PIN, dir);
       
-      while(e_steps) {}
+      while (e_steps) {
           WRITE_NC(E0_STEP_PIN, !INVERT_E_STEP_PIN);
           e_steps < 0 ? ++e_steps : --e_steps;
           WRITE_NC(E0_STEP_PIN, INVERT_E_STEP_PIN);
