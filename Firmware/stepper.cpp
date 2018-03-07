@@ -863,7 +863,7 @@ void isr() {
       // Timer interrupt for E. e_steps is set in the main routine.
       
 void advance_isr() {
-    if (current_block->use_advance_lead) {
+    if (use_advance_lead) {
       if (step_events_completed > LA_decelerate_after && current_adv_steps > final_adv_steps) {
         e_steps--;
         current_adv_steps--;
