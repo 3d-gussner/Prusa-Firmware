@@ -1242,7 +1242,7 @@ void setup()
 #ifndef DEBUG_DISABLE_STARTMSGS
   KEEPALIVE_STATE(PAUSED_FOR_USER);
 
-  show_fw_version_warnings();
+  //show_fw_version_warnings();
 
   if (!previous_settings_retrieved) {
 	  lcd_show_fullscreen_message_and_wait_P(MSG_DEFAULT_SETTINGS_LOADED); //if EEPROM version was changed, inform user that default setting were loaded
