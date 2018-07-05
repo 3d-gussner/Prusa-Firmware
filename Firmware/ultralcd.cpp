@@ -2482,7 +2482,9 @@ static void _lcd_babystep(int axis, const char *msg)
 		else  if (menuData.babyStep.babystepMem[axis] > Z_BABYSTEP_MAX) menuData.babyStep.babystepMem[axis] = Z_BABYSTEP_MAX; //0
 		else {
 			CRITICAL_SECTION_START
+      #ifdef BABYSTEPPING
 				babystepsTodo[axis] += (int)encoderPosition;
+        #endif
 			CRITICAL_SECTION_END		
 		}
 	}
@@ -2718,7 +2720,9 @@ void lcd_adjust_z() {
         int babystepLoadZ = 0;
         EEPROM_read_B(EEPROM_BABYSTEP_Z, &babystepLoadZ);
         CRITICAL_SECTION_START
+        #ifdef BABYSTEPPING
         babystepsTodo[Z_AXIS] = babystepLoadZ;
+        #endif
         CRITICAL_SECTION_END
       } else {
         int zero = 0;

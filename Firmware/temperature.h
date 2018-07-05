@@ -94,7 +94,9 @@ inline void babystepsTodoZadd(int n)
 {
     if (n != 0) {
         CRITICAL_SECTION_START
+        #ifdef BABYSTEPPING
         babystepsTodo[Z_AXIS] += n;
+        #endif
         CRITICAL_SECTION_END
     }
 }
@@ -103,7 +105,9 @@ inline void babystepsTodoZsubtract(int n)
 {
     if (n != 0) {
         CRITICAL_SECTION_START
+        #ifdef BABYSTEPPING
         babystepsTodo[Z_AXIS] -= n;
+        #endif
         CRITICAL_SECTION_END
     }
 }

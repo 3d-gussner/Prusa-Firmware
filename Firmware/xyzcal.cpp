@@ -19,8 +19,8 @@
 
 #define _PINDA ((READ(Z_MIN_PIN) != Z_MIN_ENDSTOP_INVERTING)?1:0)
 
-#define DBG(args...) printf_P(args)
-//#define DBG(args...)
+//#define DBG(args...) printf_P(args)
+#define DBG(args...)
 #define _n PSTR
 
 #define _X ((int16_t)count_position[X_AXIS])
