@@ -1,11 +1,14 @@
 ---
-name: Bug report
+name: Bug report for Original Prusa i3 MK2.5, MK2.5S, MK3 and MK3s
 about: Create a report to help us improve
 title: "[BUG]<Enter comprehensive title>"
 labels: bug
 assignees: ''
 
 ---
+This is a bug report for Original Prusa i3 MK2.5, MK2.5S, MK3 and MK3s,
+if you want to report a bug for the Original Prusa MINI please go to
+https://github.com/prusa3d/Prusa-Firmware-Buddy/issues
 
 Please, before you create a new bug report, please make sure you searched in open and closed issues and couldn't find anything that matches.
 
