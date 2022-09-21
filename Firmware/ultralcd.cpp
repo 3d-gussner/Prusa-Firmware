@@ -7486,6 +7486,16 @@ void menu_action_sddirectory(const char* filename)
 
 /** LCD API **/
 
+static void lcd_padstatus() {
+  int len = strlen(lcd_status_message);
+  if (len > 0) {
+    while (len < LCD_WIDTH) {
+      lcd_status_message[len++] = ' ';
+    }
+  }
+  lcd_status_message[LCD_WIDTH] = '\0';
+}
+
 void ultralcd_init()
 {
     {
@@ -7519,7 +7529,8 @@ void ultralcd_init()
   lcd_encoder_diff = 0;
 
   // Initialise status line
-  lcd_setstatuspgm(MSG_WELCOME);
+  strncpy_P(lcd_status_message, MSG_WELCOME, LCD_WIDTH);
+  lcd_padstatus();
 }
 
 void lcd_ignore_click(bool b)
@@ -7530,15 +7541,8 @@ void lcd_ignore_click(bool b)
 
 void lcd_finishstatus() {
   SERIAL_PROTOCOLLNRPGM(MSG_LCD_STATUS_CHANGED);
-  int len = strlen(lcd_status_message);
-  if (len > 0) {
-    while (len < LCD_WIDTH) {
-      lcd_status_message[len++] = ' ';
-    }
-  }
-  lcd_status_message[LCD_WIDTH] = '\0';
+  lcd_padstatus();
   lcd_draw_update = 2;
-
 }
 
 static bool lcd_message_check(uint8_t priority)
