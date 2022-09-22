@@ -79,6 +79,7 @@ void xfdump_dump()
     buf.magic = DUMP_MAGIC;
     buf.regs_present = false;
     buf.crash_reason = (uint8_t)dump_crash_reason::manual;
+    buf.githash = GIT_HASH;
 
     // write sram only
     xfdump_dump_core(buf, DUMP_OFFSET + offsetof(dump_t, data.sram),
@@ -92,6 +93,7 @@ void xfdump_full_dump_and_reset(dump_crash_reason reason)
     buf.magic = DUMP_MAGIC;
     buf.regs_present = true;
     buf.crash_reason = (uint8_t)reason;
+    buf.githash = GIT_HASH;
 
     // disable interrupts for a cleaner register dump
     cli();

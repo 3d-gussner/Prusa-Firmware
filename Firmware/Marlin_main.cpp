@@ -856,7 +856,7 @@ void show_fw_version_warnings() {
   #endif
     lcd_puts_at_P(0, 1, PSTR("May destroy printer!"));
     lcd_puts_at_P(0, 2, PSTR("ver ")); lcd_puts_P(PSTR(FW_VERSION_FULL));
-    lcd_puts_at_P(0, 3, PSTR(FW_REPOSITORY));
+    lcd_puts_at_P(0, 3, PSTR("Repo:")); lcd_puts_P(PSTR(FW_REPOSITORY));
     lcd_wait_for_click();
     break;
 //	default: lcd_show_fullscreen_message_and_wait_P(_i("WARNING: This is an unofficial, unsupported build. Use at your own risk!")); break;////MSG_FW_VERSION_UNKNOWN c=20 r=8
@@ -1132,7 +1132,7 @@ void setup()
 		SERIAL_PROTOCOLLNPGM("start");
 #endif
 	SERIAL_ECHO_START;
-	puts_P(PSTR(" " FW_VERSION_FULL));
+	puts_P(PSTR(" " FW_VERSION_FULL " " FW_GIT_HASH));
 
 	//SERIAL_ECHOPAIR("Active sheet before:", static_cast<unsigned long int>(eeprom_read_byte(&(EEPROM_Sheets_base->active_sheet))));
 

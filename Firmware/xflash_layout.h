@@ -54,7 +54,7 @@
 #define XFLASH_SIZE 0x40000ul // size of XFLASH
 
 #define DUMP_MAGIC  0x55525547ul
-
+#define GIT_HASH    0x3dc4f20dul
 struct dump_header_t
 {
     // start with a magic value to indicate the presence of a dump, so that clearing
@@ -66,6 +66,7 @@ struct dump_header_t
 
     uint32_t pc;          // PC nearby the crash location
     uint16_t sp;          // SP nearby the crash location
+    uint32_t githash;     // githash
 };
 
 struct dump_data_t

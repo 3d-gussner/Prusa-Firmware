@@ -291,7 +291,7 @@ fi
 
 #Check if verbose_IDE is selected with argument '-j'
 
-if [ ! -z "$verbose_IDE_flag" ]; then
+if [ -n "$verbose_IDE_flag" ]; then
     if [ $verbose_IDE_flag == "1" ]; then
         verbose_IDE="1"
     elif [ $verbose_IDE_flag == "0" ]; then
@@ -305,7 +305,7 @@ else
 fi  
 
 #Check if Build is selected with argument '-f'
-if [ ! -z "$board_flash_flag" ] ; then
+if [ -n "$board_flash_flag" ] ; then
     if [ "$board_flash_flag" == "256" ] ; then
         BOARD_FLASH="0x3FFFF"
         BOARD_maximum_size="253952"
@@ -338,7 +338,7 @@ if [ ! -z "$board_flash_flag" ] ; then
 fi
 
 #Check if Build is selected with argument '-x'
-if [ ! -z "$board_mem_flag" ] ; then
+if [ -n "$board_mem_flag" ] ; then
     if [ "$board_mem_flag" == "8" ] ; then
         BOARD_MEM="0x21FF"
         echo "Board mem size   :     $board_mem_flag Kb, $BOARD_MEM (hex)"
@@ -357,7 +357,7 @@ if [ ! -z "$board_mem_flag" ] ; then
 fi
 
 #Start: Check if Arduino IDE version is correct
-if [ ! -z "$IDE_flag" ]; then
+if [ -n "$IDE_flag" ]; then
     if [[ "$IDE_flag" == "1.8.5" || "$IDE_flag" == "1.8.19" ]]; then
         ARDUINO_ENV="${IDE_flag}"
     else
@@ -587,10 +587,10 @@ echo ""
 echo "Arduino IDE :" $ARDUINO_ENV
 echo "Build env   :" $BUILD_ENV
 echo "Board       :" $BOARD
-if [ ! -z "$BOARD_FLASH" ] ; then
+if [ -n "$BOARD_FLASH" ] ; then
     echo "Board flash :" $BOARD_FLASH
 fi
-if [ ! -z "$BOARD_MEM" ] ; then
+if [ -n "$BOARD_MEM" ] ; then
     echo "Board mem   :" $BOARD_MEM
 fi
 echo "Package name:" $BOARD_PACKAGE_NAME
@@ -915,7 +915,7 @@ else
     fi
 fi
 #Check if DEV_STATUS is selected via argument '-d'
-if [ ! -z "$devel_flag" ] ; then
+if [ -n "$devel_flag" ] ; then
     if [[ "$devel_flag" == "GOLD" || "$devel_flag" == "RC" || "$devel_flag" == "BETA" || "$devel_flag" == "ALPHA" || "$devel_flag" == "DEVEL" || "$devel_flag" == "DEBUG" || "$devel_flag" == "UNKNOWN" ]] ; then
         DEV_STATUS_SELECTED=$devel_flag
     elif [[ "$devel_flag" == "atmega404" || "$devel_flag" == "atmega404_no_bootloader" ]] ; then
@@ -928,7 +928,7 @@ if [ ! -z "$devel_flag" ] ; then
 fi
 
 #Check if Build is selected via argument '-b'
-if [ ! -z "$build_flag" ] ; then
+if [ -n "$build_flag" ] ; then
     if [[ "$build_flag" == "Auto" && "$git_available" == "1" ]] ; then
         BUILD=$(git rev-list --count HEAD)
     elif [[ $build_flag =~ ^[0-9]+$ ]] ; then
@@ -940,8 +940,40 @@ if [ ! -z "$build_flag" ] ; then
     fi
 fi
 
+#Check git hash
+if [ -n "$git_available" ]; then
+    GIT_DESCRIBE=$(git describe --always --dirty --broken --abbrev=6 --exclude '*')
+    IFS='-'
+    read -ra strdescribe <<< $GIT_DESCRIBE
+    GIT_HASH=${strdescribe[0]} #max length 6
+    GIT_HASH_WRONG=${strdescribe[1]::1} #cut to 1st character to fit on LCD limits c=18
+    IFS=' '
+else
+    GIT_HASH="Unknown"
+fi
+
+#check "Current git describe:" $GIT_DESCRIBE
+if [ -n "$GIT_HASH" ]; then
+    if [ -n "$GIT_HASH_WRONG" ]; then
+        GIT_HASH="${GIT_HASH}-${GIT_HASH_WRONG}"
+    fi
+fi
+
+#check repo
+if [ -n "$git_available" ]; then
+    REPO_DES="$(git remote get-url origin)"
+    REPO_DES="${REPO_DES#*github.com/}"
+    REPO_DES="${REPO_DES%%/*}"
+    REPO_DES=${REPO_DES::13} #Cut to max. 13  characters to fit on LCD limits c=18
+    if [ "${REPO_DES}" = "" ]; then
+        REPO_DES="Unknown"
+    fi
+else
+    REPO_DES="Unknown"
+fi
+
 #Check git branch has changed
-if [ ! -z "git_available" ]; then
+if [ -n "$git_available" ]; then
     BRANCH=$(git branch --show-current)
     echo "Current branch is:" $BRANCH
     if [ ! -f "$SCRIPT_PATH/../PF-build.branch" ]; then
@@ -1034,7 +1066,7 @@ prepare_code_for_compiling()
             FW="$FW-$FW_FLAVOR"
             DEV_CHECK="$FW_FLAVOR"
             echo "DEV:$DEV_CHECK"
-            if [ ! -z "$FW_FLAVERSION" ] ; then
+            if [ -n "$FW_FLAVERSION" ] ; then
                 FW="$FW$FW_FLAVERSION"
             fi
         else
@@ -1055,29 +1087,32 @@ prepare_code_for_compiling()
             DEV_STATUS="DEBUG"
         else
             DEV_STATUS="UNKNOWN"
-            echo
-            echo "$(tput setaf 5)DEV_STATUS is UNKNOWN. Do you wish to set DEV_STATUS to GOLD?$(tput sgr0)"
-            PS3="Select YES only if source code is tested and trusted: "
-            select yn in "Yes" "No"; do
-                case $yn in
-                    Yes)
-                        DEV_STATUS="GOLD"
-                        DEV_STATUS_SELECTED="GOLD"
-                        break
-                        ;;
-                    No)
-                        DEV_STATUS="UNKNOWN"
-                        DEV_STATUS_SELECTED="UNKNOWN"
-                        break
-                        ;;
-                    *)
-                        echo "$(tput setaf 1)This is not a valid DEV_STATUS$(tput sgr0)"
-                        ;;
-                esac
-            done
+#            echo
+#            echo "$(tput setaf 5)DEV_STATUS is UNKNOWN. Do you wish to set DEV_STATUS to GOLD?$(tput sgr0)"
+#            PS3="Select YES only if source code is tested and trusted: "
+#            select yn in "Yes" "No"; do
+#                case $yn in
+#                    Yes)
+#                        DEV_STATUS="GOLD"
+#                        DEV_STATUS_SELECTED="GOLD"
+#                        break
+#                        ;;
+#                    No)
+#                        DEV_STATUS="UNKNOWN"
+#                        DEV_STATUS_SELECTED="UNKNOWN"
+#                        break
+#                        ;;
+#                    *)
+#                        echo "$(tput setaf 1)This is not a valid DEV_STATUS$(tput sgr0)"
+#                        ;;
+#                esac
+#            done
         fi
     else
         DEV_STATUS=$DEV_STATUS_SELECTED
+    fi
+    if [ -n "$GIT_HASH" ]; then
+        sed -i -- "s/^#define FW_GIT_HASH \"000000-0\".*/#define FW_GIT_HASH \"${GIT_HASH}\"/g" $SCRIPT_PATH/Firmware/Configuration.h
     fi
 }
 #### End: Prepare code for compiling
@@ -1098,7 +1133,7 @@ prepare_hex_folders()
     #Define OUTPUT_FILENAME
     OUTPUT_FILENAME=FW$FW-Build$BUILD-$VARIANT
     #Check for OUTPUT_FILENAME_SUFFIX and add it
-    if [ ! -z $OUTPUT_FILENAME_SUFFIX ]; then
+    if [ -n $OUTPUT_FILENAME_SUFFIX ]; then
         OUTPUT_FILENAME="${OUTPUT_FILENAME}$OUTPUT_FILENAME_SUFFIX"
     fi
 
@@ -1137,11 +1172,18 @@ list_usefull_data()
     echo "Variant        :" $VARIANT
     echo "Firmware       :" $FW
     echo "Build #        :" $BUILD
+    echo "GIT hash       :" $GIT_HASH
+    echo "Repo           :" $REPO_DES
+    echo "Branch         :" $BRANCH
     echo "Dev Check      :" $DEV_CHECK
     echo "DEV Status     :" $DEV_STATUS
     echo "Motherboard    :" $MOTHERBOARD
-    echo "Board flash    :" $BOARD_FLASH
-    echo "Board mem      :" $BOARD_MEM
+    if [ -n $BOARD_FLASH ]; then
+        echo "Board flash    :" $BOARD_FLASH
+    fi
+    if [ -n $BOARD_MEM ]; then
+        echo "Board mem      :" $BOARD_MEM
+    fi
     echo "Languages      :" $LANGUAGES
     echo "Hex-file Folder:" $OUTPUT_FOLDER
     echo "Hex filename   :" $OUTPUT_FILENAME
@@ -1168,7 +1210,10 @@ prepare_variant_for_compiling()
     sed -i -- "s/#define FW_DEV_VERSION FW_VERSION_.*/#define FW_DEV_VERSION FW_VERSION_$DEV_STATUS/g" $SCRIPT_PATH/Firmware/Configuration.h
 
     # set FW_REPOSITORY
-    sed -i -- 's/#define FW_REPOSITORY "Unknown"/#define FW_REPOSITORY "Prusa3d"/g' $SCRIPT_PATH/Firmware/Configuration.h
+    if [ $REPO_DES == "prusa3d" ]; then
+        sed -i -- 's/^#define FW_REPO_ORIGIN *0/#define FW_REPO_ORIGIN 1/g' $SCRIPT_PATH/Firmware/Configuration.h
+    fi
+    sed -i -- "s/#define FW_REPOSITORY \"Unknown\"/#define FW_REPOSITORY \"${REPO_DES}\"/g" $SCRIPT_PATH/Firmware/Configuration.h
 
     #Prepare English only or multi-language version to be build
     if [ $LANGUAGES == "EN_ONLY" ]; then
@@ -1225,7 +1270,7 @@ compile_en_firmware()
         BOARD_MEM_MODIFIED=0
     fi
     ## Modify board mem size
-    if [[ ! -z $BOARD_MEM && "$BOARD_MEM" != "0x21FF" ]] ; then
+    if [[ -n $BOARD_MEM && "$BOARD_MEM" != "0x21FF" ]] ; then
         echo "$(tput setaf 3)Modifying board memory size (hex):$(tput sgr 0)"
         echo "Old:" $CURRENT_BOARD_MEM
         echo "New:" $BOARD_MEM
@@ -1263,7 +1308,7 @@ compile_en_firmware()
         BOARD_FLASH_MODIFIED=1
     fi
     ## Modify boad flash size
-    if [[ ! -z $BOARD_FLASH && "$BOARD_FLASH" != "0x3FFFF" ]] ; then
+    if [[ -n $BOARD_FLASH && "$BOARD_FLASH" != "0x3FFFF" ]] ; then
         echo "$(tput setaf 3)Modifying board flash size (hex):$(tput sgr 0)"
         echo "Old flash size:" $CURRENT_BOARD_FLASH
         echo "New flash size:" $BOARD_FLASH
@@ -1426,7 +1471,10 @@ cleanup_firmware()
     # Restore files to previous state
     sed -i -- "s/^#define FW_DEV_VERSION FW_VERSION_.*/#define FW_DEV_VERSION FW_VERSION_UNKNOWN/g" $SCRIPT_PATH/Firmware/Configuration.h
     sed -i -- 's/^#define FW_REPOSITORY.*/#define FW_REPOSITORY "Unknown"/g' $SCRIPT_PATH/Firmware/Configuration.h
-    if [ ! -z "$BUILD_ORG" ] ; then
+    sed -i -- 's/^#define FW_REPO_ORIGIN.*/#define FW_REPO_ORIGIN 0/g' $SCRIPT_PATH/Firmware/Configuration.h
+    sed -i -- "s/^#define FW_GIT_HASH.*/#define FW_GIT_HASH \"000000-0\"/g" $SCRIPT_PATH/Firmware/Configuration.h
+    sed -i -- 's/^#define FW_REPO_ORIGIN.*/#define FW_REPO_ORIGIN 0/g' $SCRIPT_PATH/Firmware/Configuration.h
+    if [ -n "$BUILD_ORG" ] ; then
         sed -i -- "s/^#define FW_COMMIT_NR.*/#define FW_COMMIT_NR $BUILD_ORG/g" $SCRIPT_PATH/Firmware/Configuration.h
     fi
     echo $MULTI_LANGUAGE_CHECK
@@ -1532,18 +1580,18 @@ fi
         mk404_flag=2
     fi
 
-if [[ ! -z "$mk404_flag" && "$variant_flag" != "All " ]]; then
+if [[ -n "$mk404_flag" && "$variant_flag" != "All " ]]; then
 
 # Run MK404 with 'debugcore' and/or 'bootloader-file'
-    if [ ! -z "$board_mem_flag" ]; then
+    if [ -n "$board_mem_flag" ]; then
         MK404_options="-x $board_mem_flag"
     fi
-    if [ ! -z "$board_flash_flag" ]; then
+    if [ -n "$board_flash_flag" ]; then
         MK404_options="${MK404_options} -y $board_flash_flag"
     fi
 
 # Run MK404 with graphics
-    if [ ! -z "$mk404_graphics_flag" ]; then
+    if [ -n "$mk404_graphics_flag" ]; then
         if [[ "$mk404_graphics_flag" == "1" || "$mk404_graphics_flag" == "2" || "$mk404_graphics_flag" == "3" || "$mk404_graphics_flag" == "4" ]]; then
             MK404_options="${MK404_options}  -g $mk404_graphics_flag"
         else

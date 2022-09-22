@@ -118,7 +118,7 @@ fi
 #Set Check for updates as default
 check_flag=1
 #Start: Check mk404_printer_flag
-if [ ! -z $mk404_printer_flag ]; then
+if [ -n "$mk404_printer_flag" ]; then
     if [[ "$mk404_printer_flag" == "MK3" || "$mk404_printer_flag" == "MK3S" || "$mk404_printer_flag" == "MK25" || "$mk404_printer_flag" == "MK25S" ]]; then
         MK404_PRINTER_TEMP=$mk404_printer_flag
     else
@@ -128,7 +128,7 @@ fi
 #End: Check mk404_printer_flag
 
 #Start: Check if Build is selected with argument '-f'
-if [ ! -z "$board_flash_flag" ] ; then
+if [ -n "$board_flash_flag" ] ; then
     if [ "$board_flash_flag" == "256" ] ; then
         BOARD_FLASH="0x3FFFF"
         echo "Board flash size :   $board_flash_flag Kb, $BOARD_FLASH (hex)"
@@ -151,7 +151,7 @@ fi
 #End: Check if Build is selected with argument '-f'
 
 #Start: Check if Build is selected with argument '-x'
-if [ ! -z "$board_mem_flag" ] ; then
+if [ -n "$board_mem_flag" ] ; then
     if [ "$board_mem_flag" == "8" ] ; then
         BOARD_MEM="0x21FF"
         echo "Board mem size   :     $board_mem_flag Kb, $BOARD_MEM (hex)"
@@ -178,34 +178,34 @@ fi
 
 # Prepare run MK404
 #Check MK404_Printer
-if [ ! -z $firmware_version_flag ]; then
+if [ -n "$firmware_version_flag" ]; then
     MK404_PRINTER_TEMP=$(echo $firmware_version_flag | sed 's/\(.*\)\///' | grep 'MK3')
-    if [ ! -z $MK404_PRINTER_TEMP ]; then
+    if [ -n "$MK404_PRINTER_TEMP" ]; then
         MK404_PRINTER=MK3
     fi
     MK404_PRINTER_TEMP=$(echo $firmware_version_flag | sed 's/\(.*\)\///' | grep 'MK3S')
-    if [ ! -z $MK404_PRINTER_TEMP ]; then
+    if [ -n "$MK404_PRINTER_TEMP" ]; then
         MK404_PRINTER=MK3S
     fi
     MK404_PRINTER_TEMP=$(echo $firmware_version_flag | sed 's/\(.*\)\///' | grep 'MK25')
-    if [ ! -z $MK404_PRINTER_TEMP ]; then
+    if [ -n "$MK404_PRINTER_TEMP" ]; then
         MK404_PRINTER=MK25
     fi
     MK404_PRINTER_TEMP=$(echo $firmware_version_flag | sed 's/\(.*\)\///' | grep 'MK25S')
-    if [ ! -z $MK404_PRINTER_TEMP ]; then
+    if [ -n "$MK404_PRINTER_TEMP" ]; then
         MK404_PRINTER=MK25S
     fi
-elif [[ ! -z $new_build_flag || ! -z $update_flag || ! -z $check_flag ]]; then
+elif [[ -n "$new_build_flag" || -n "$update_flag" || -n "$check_flag" ]]; then
         echo "continue"
 else
     failures 8
 fi
 
-if [[ -z $MK404_PRINTER && -z $new_build_flag && -z $update_flag && -z $check_flag ]]; then
+if [[ -z "$MK404_PRINTER" && -z "$new_build_flag" && -z "$update_flag" && -z "$check_flag" ]]; then
     failures 9
 fi
 
-if [ ! -z $mk404_printer_flag ]; then
+if [ -n "$mk404_printer_flag" ]; then
     if [ "$mk404_printer_flag" != "$MK404_PRINTER" ]; then
         echo "$(tput setaf 3)You defined a different printer type than the firmware!"
         echo "This can cause unexpected issues.$(tput sgr 0)"
@@ -246,16 +246,16 @@ else
 fi
 
 # Run MK404 with 'debugcore' and/or 'bootloader-file'
-    if [[ ! -z $MK404_DEBUG && "$MK404_DEBUG" == "atmega404" || ! -z $BOARD_MEM && "$BOARD_MEM" == "0xFFFF" ]]; then
+    if [[ -n "$MK404_DEBUG" && "$MK404_DEBUG" == "atmega404" || -n "$BOARD_MEM" && "$BOARD_MEM" == "0xFFFF" ]]; then
         MK404_options="--debugcore"
     fi
-    if [[ ! -z $MK404_DEBUG && "$MK404_DEBUG" == "atmega404_no_bootloader"  || ! -z $BOARD_FLASH && "$BOARD_FLASH" != "0x3FFFF" ]]; then
+    if [[ -n "$MK404_DEBUG" && "$MK404_DEBUG" == "atmega404_no_bootloader"  || -n "$BOARD_FLASH" && "$BOARD_FLASH" != "0x3FFFF" ]]; then
         MK404_options='--debugcore --bootloader-file ""'
     fi
 
-# Run MK404 with graphics
-    if [ ! -z "$mk404_graphics_flag" ]; then
-        if [ ! -z "$MK404_options" ]; then
+# Run MK404 with graphics"
+    if [ -n "$mk404_graphics_flag" ]; then
+        if [ -n "$MK404_options" ]; then
             MK404_options="${MK404_options} -g "
         else
             MK404_options=" -g "
@@ -273,7 +273,7 @@ fi
             MK404_options="${MK404_options} --extrusion Line"
         fi
     fi
-if [ ! -z $firmware_version_flag ]; then
+if [ -n "$firmware_version_flag" ]; then
     MK404_firmware_file=" -f $firmware_version_flag"
 fi
 
@@ -432,7 +432,7 @@ if [ "$check_flag" == "1" ]; then
     echo "$(tput sgr 0)"
 
 # Check for updates
-    if [ ! -z $MK404_release_GIT_COMMIT_HASH ]; then
+    if [ -n "$MK404_release_GIT_COMMIT_HASH" ]; then
         if [[ "$MK404_local_GIT_COMMIT_HASH" != "$MK404_release_GIT_COMMIT_HASH" && -z "$update_flag" ]]; then
             echo "$(tput setaf 2)Update to release is availible.$(tput sgr 0)"
             read -t 10 -n 1 -p "$(tput setaf 3)Update to release now Y/n$(tput sgr 0)" update_answer
@@ -442,7 +442,7 @@ if [ "$check_flag" == "1" ]; then
             echo ""
         fi
     fi
-    if [ ! -z $MK404_devel_GIT_COMMIT_HASH ]; then
+    if [ -n "$MK404_devel_GIT_COMMIT_HASH" ]; then
         if [[ "$MK404_local_GIT_COMMIT_HASH" != "$MK404_devel_GIT_COMMIT_HASH" && -z "$update_flag" ]]; then
             echo "$(tput setaf 2)Update to devel is availible.$(tput sgr 0)"
             read -t 10 -n 1 -p "$(tput setaf 3)Update to devel now Y/n$(tput sgr 0)" update_answer
@@ -460,7 +460,7 @@ fi
 fetch_updates()
 {
 if [ "$update_flag" == "1" ]; then
-    if [ ! -z $MK404_release_GIT_COMMIT_HASH ]; then
+    if [ -n "$MK404_release_GIT_COMMIT_HASH" ]; then
         if [ "$MK404_local_GIT_COMMIT_HASH" != "$MK404_release_GIT_COMMIT_HASH" ]; then
             echo ""
             git fetch --all
@@ -473,7 +473,7 @@ if [ "$update_flag" == "1" ]; then
         fi
     fi
 elif [ "$update_flag" == "2" ]; then
-    if [ ! -z $MK404_devel_GIT_COMMIT_HASH ]; then
+    if [ -n "$MK404_devel_GIT_COMMIT_HASH" ]; then
         if [ "$MK404_local_GIT_COMMIT_HASH" != "$MK404_devel_GIT_COMMIT_HASH" ]; then
             echo ""
             git fetch --all
@@ -534,7 +534,7 @@ fi
 #### Start: Run MK404 SIM
 run_MK404_SIM()
 {
-if [ ! -z $mk404_flag ]; then
+if [ -n "$mk404_flag" ]; then
     # Output some useful data
     echo "Printer     : $MK404_PRINTER"
     echo "Options     : $MK404_options"

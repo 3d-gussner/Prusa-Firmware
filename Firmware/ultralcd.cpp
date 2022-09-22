@@ -1556,7 +1556,10 @@ void TestPullupCrash() {
 //! |01234567890123456789|
 //! | Main               |	MSG_MAIN c=18
 //! | Firmware:          |	c=18
-//! |  3.7.2.-2363       |	c=16
+//! | 3.7.2.-2363        |	c=18
+//! | Hash:012345-d      |  c=18 <git hash:6>-<d|b:1>
+//! | Repo:prusa3d       |  c=18 <git repo:13>
+//! | --------------     |	STR_SEPARATOR
 //! | prusa3d.com        |	MSG_PRUSA3D
 //! | forum.prusa3d.com  |	MSG_PRUSA3D_FORUM
 //! | help.prusa3d.com  |	MSG_PRUSA3D_HELP
@@ -1653,9 +1656,10 @@ static void lcd_support_menu()
   MENU_ITEM_BACK_P(_T(MSG_MAIN));
 
   MENU_ITEM_BACK_P(PSTR("Firmware:"));
-  MENU_ITEM_BACK_P(PSTR(" " FW_VERSION_FULL));
-#if (FW_DEV_VERSION != FW_VERSION_GOLD) && (FW_DEV_VERSION != FW_VERSION_RC)
-  MENU_ITEM_BACK_P(PSTR(" repo " FW_REPOSITORY));
+  MENU_ITEM_BACK_P(PSTR(FW_VERSION_FULL));
+  MENU_ITEM_BACK_P(PSTR("Hash: " FW_GIT_HASH));
+#if (FW_DEV_VERSION != FW_VERSION_GOLD) && (FW_DEV_VERSION != FW_VERSION_RC) || (FW_REPO_ORIGIN == 0)
+  MENU_ITEM_BACK_P(PSTR("Repo:" FW_REPOSITORY));
 #endif
   // Ideally this block would be optimized out by the compiler.
 /*  const uint8_t fw_string_len = strlen_P(FW_VERSION_STR_P());
@@ -1664,7 +1668,7 @@ static void lcd_support_menu()
   } else {
       MENU_ITEM_BACK_P(PSTR("FW - " FW_version));
   }*/
-      
+  MENU_ITEM_BACK_P(STR_SEPARATOR);
   MENU_ITEM_BACK_P(_n("prusa3d.com"));////MSG_PRUSA3D c=18
   MENU_ITEM_BACK_P(_n("forum.prusa3d.com"));////MSG_PRUSA3D_FORUM c=18
   MENU_ITEM_BACK_P(_n("help.prusa3d.com"));////MSG_PRUSA3D_HELP c=18
