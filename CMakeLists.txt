@@ -2,18 +2,23 @@ cmake_minimum_required(VERSION 3.19)
 include(cmake/Utilities.cmake)
 include(cmake/GetGitRevisionDescription.cmake)
 include(cmake/ReproducibleBuild.cmake)
+include(cmake/ProjectVersion.cmake)
+resolve_version_variables()
 
 set(PROJECT_VERSION_SUFFIX
     "<auto>"
     CACHE
       STRING
-      "Full version suffix to be shown on the info screen in settings (e.g. full_version=4.0.3-BETA+1035.PR111.B4, suffix=-BETA+1035.PR111.B4). Defaults to '+<commit sha>.<dirty?>.<debug?>' if set to '<auto>'."
+      "Version suffix to be appended to the final filename (<ver+PROJECT_VERSION_SUFFIX>). Overrides git hash if set."
     )
-set(PROJECT_VERSION_SUFFIX_SHORT
+if(PROJECT_VERSION_SUFFIX STREQUAL "<auto>")
+  set(PROJECT_VERSION_SUFFIX "${FW_COMMIT_HASH}")
+endif()
+set(PROJECT_VERSION_FULL
     "<auto>"
     CACHE
       STRING
-      "Short version suffix to be shown on splash screen. Defaults to '+<BUILD_NUMBER>' if set to '<auto>'."
+      "Full version string to be shown on the info screen in settings. Overrides git version if set."
     )
 set(BUILD_NUMBER
     ""
@@ -47,15 +52,15 @@ if(NOT PROJECT_VERSION_FLAVOUR STREQUAL "")
     set(PROJECT_VERSION "${PROJECT_VERSION}${PROJECT_VERSION_FLAVOUR_REVISION}")
     add_compile_definitions(FW_FLAVERSION=${PROJECT_VERSION_FLAVOUR_REVISION})
   endif()
+if(PROJECT_VERSION_FULL STREQUAL "<auto>")
+  set(PROJECT_VERSION_FULL "${FW_COMMIT_DSC}")
 endif()
+set(FN_PREFIX "FW${PROJECT_VERSION}+${PROJECT_VERSION_SUFFIX}")
 
 # Inform user about the resolved settings
-message(STATUS "Project version: ${PROJECT_VERSION}")
-message(
-  STATUS "Project version with short suffix: ${PROJECT_VERSION}${PROJECT_VERSION_SUFFIX_SHORT}"
-  )
-
-set(FN_PREFIX "FW${PROJECT_VERSION}${PROJECT_VERSION_SUFFIX_SHORT}")
+message(STATUS "Project version ...........: ${PROJECT_VERSION}")
+message(STATUS "Project version suffix ....: ${PROJECT_VERSION_SUFFIX}")
+message(STATUS "Project version description: ${PROJECT_VERSION_FULL}")
 
 # Language configuration
 set(MAIN_LANGUAGES
