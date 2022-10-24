@@ -63,7 +63,7 @@ msgstr "Alphabet"
 #. MSG_ALWAYS c=6
 #: ../../Firmware/messages.cpp:8 ../../Firmware/ultralcd.cpp:4287
 msgid "Always"
-msgstr "Toujours"
+msgstr "Tjrs"
 
 #. MSG_AMBIENT c=14
 #: ../../Firmware/ultralcd.cpp:1406
@@ -278,7 +278,7 @@ msgstr "Carte retiree"
 #. MSG_CNG_SDCARD c=18
 #: ../../Firmware/ultralcd.cpp:5547
 msgid "Change SD card"
-msgstr "Changez de carte SD"
+msgstr "Changez carte SD"
 
 #. MSG_FILAMENTCHANGE c=18
 #: ../../Firmware/messages.cpp:39 ../../Firmware/ultralcd.cpp:5506
@@ -425,7 +425,7 @@ msgstr "Sombre"
 #. MSG_BTN_DISABLE_MMU c=9
 #: ../../Firmware/mmu2/errors_list.h:286 ../../Firmware/mmu2/errors_list.h:296
 msgid "Disable"
-msgstr "Desactiver"
+msgstr "Desact."
 
 #. MSG_DISABLE_STEPPERS c=18
 #: ../../Firmware/ultralcd.cpp:4764
@@ -437,7 +437,7 @@ msgstr "Desactiver moteurs"
 #: ../../Firmware/mmu2_progress_converter.cpp:36
 #: ../../Firmware/mmu2_progress_converter.cpp:44
 msgid "Disengaging idler"
-msgstr "Desengagement de l'idler"
+msgstr "Desenga.t de l'idler"
 
 #. MSG_BABYSTEP_Z_NOT_SET c=20 r=12
 #: ../../Firmware/Marlin_main.cpp:1530 ../../Firmware/Marlin_main.cpp:3400
@@ -492,7 +492,7 @@ msgstr "ERR Echec TMC"
 #: ../../Firmware/mmu2_progress_converter.cpp:17
 #: ../../Firmware/mmu2_progress_converter.cpp:46
 msgid "ERR Wait for User"
-msgstr "ERR Attente Utilisateur"
+msgstr "ERR Att. Utilisateur"
 
 #. MSG_ERROR c=10
 #: ../../Firmware/messages.cpp:29 ../../Firmware/ultralcd.cpp:2282
@@ -532,7 +532,7 @@ msgstr "Butees"
 #: ../../Firmware/mmu2_progress_converter.cpp:35
 #: ../../Firmware/mmu2_progress_converter.cpp:45
 msgid "Engaging idler"
-msgstr "Engagement de l'idler"
+msgstr "Engagem.t de l'idler"
 
 #. MSG_EXTRUDER c=17
 #: ../../Firmware/Marlin_main.cpp:3519 ../../Firmware/Tcodes.cpp:35
@@ -562,7 +562,7 @@ msgstr "F. autocharg."
 #: ../../Firmware/messages.cpp:46 ../../Firmware/ultralcd.cpp:4232
 #: ../../Firmware/ultralcd.cpp:4239
 msgid "F. jam detect"
-msgstr "Detection de bourrage de F."
+msgstr "Detect bour F"
 
 #. MSG_FSENSOR_RUNOUT c=13
 #: ../../Firmware/messages.cpp:44 ../../Firmware/ultralcd.cpp:4229
@@ -586,9 +586,9 @@ msgid ""
 "FINDA didn't switch off while unloading filament. Try unloading manually. "
 "Ensure filament can move and FINDA works."
 msgstr ""
-"La FINDA ne s'est pas desactivee lors du dechargement du filament. Essayez de "
-"decharger manuellement. Assurez-vous que le filament peut bouger et que la "
-"FINDA fonctionne."
+"FINDA non desactivee lors du dechargement du filament. Essayez de decharger "
+"a la main. Assurez-vous que le filament peut bouger et que la FINDA "
+"fonctionne."
 
 #. MSG_DESC_FINDA_DIDNT_TRIGGER c=20 r=8
 #: ../../Firmware/mmu2/errors_list.h:196 ../../Firmware/mmu2/errors_list.h:236
@@ -668,25 +668,25 @@ msgstr "Verif vent."
 #: ../../Firmware/mmu2_progress_converter.cpp:13
 #: ../../Firmware/mmu2_progress_converter.cpp:39
 msgid "Feeding to FINDA"
-msgstr "Chargement vers la FINDA"
+msgstr "Chargem.t vers FINDA"
 
 #. MSG_PROGRESS_FEED_FSENSOR c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:31
 #: ../../Firmware/mmu2_progress_converter.cpp:62
 msgid "Feeding to FSensor"
-msgstr "Chargement vers le Capteur F"
+msgstr "Charg.t v. Capteur F"
 
 #. MSG_PROGRESS_FEED_EXTRUDER c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:14
 #: ../../Firmware/mmu2_progress_converter.cpp:40
 msgid "Feeding to extruder"
-msgstr "Chargement vers l'extrudeur"
+msgstr "Charg.t vers extrud."
 
 #. MSG_PROGRESS_FEED_NOZZLE c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:15
 #: ../../Firmware/mmu2_progress_converter.cpp:41
 msgid "Feeding to nozzle"
-msgstr "Chargement vers la buse"
+msgstr "Chargement vers buse"
 
 #. MSG_FIL_RUNOUTS c=15
 #: ../../Firmware/messages.cpp:32 ../../Firmware/ultralcd.cpp:1246
@@ -732,9 +732,8 @@ msgid ""
 "Filament sensor didn't switch off while unloading filament. Ensure filament "
 "can move and the sensor works."
 msgstr ""
-"Le capteur de filament ne s'est pas desactive lors du déchargement du "
-"filament. Assurez-vous que le filament peut bouger et que le capteur "
-"fonctionne."
+"Capteur de filament non desactive lors du dechargement du filament. Assurez-"
+"vous que le filament peut bouger et que le capteur fonctionne."
 
 #. MSG_DESC_FSENSOR_DIDNT_TRIGGER c=20 r=8
 #: ../../Firmware/mmu2/errors_list.h:198 ../../Firmware/mmu2/errors_list.h:238
@@ -742,9 +741,8 @@ msgid ""
 "Filament sensor didn't trigger while loading the filament. Ensure the "
 "filament reached the fsensor and the sensor works."
 msgstr ""
-"Le capteur de filament ne s'est pas declenche lors du chargement du "
-"filament. Assurez-vous que le filament a atteint le capteur f et que "
-"le capteur fonctionne."
+"Capteur de filament non declenche lors du chargement du filament. Assurez-"
+"vous que le filament a atteint le capteur f et que le capteur fonctionne."
 
 #. MSG_DESC_FSENSOR_TOO_EARLY c=20 r=8
 #: ../../Firmware/mmu2/errors_list.h:201 ../../Firmware/mmu2/errors_list.h:241
@@ -752,9 +750,8 @@ msgid ""
 "Filament sensor triggered too early while loading to extruder. Check there "
 "isn't anything stuck in PTFE tube. Check that sensor reads properly."
 msgstr ""
-"Le capteur de filament s'est declenche trop tot lors du chargement dans "
-"l'extrudeur. Verifiez qu'il n'y a rien de coince dans le tube PTFE. "
-"Verifiez que le capteur fonctionne correctement."
+"Capteur de filament declenche trop tot lors du chargement dans l'extrudeur. "
+"Verifiez le tube PTFE. Verifiez que le capteur fonctionne."
 
 #. MSG_FILAMENT_USED c=19
 #: ../../Firmware/ultralcd.cpp:2363
@@ -1075,7 +1072,7 @@ msgstr "Charger filament"
 #. MSG_LOAD_TO_EXTRUDER c=18
 #: ../../Firmware/messages.cpp:57 ../../Firmware/ultralcd.cpp:5572
 msgid "Load to extruder"
-msgstr "Charger vers l'extrudeur"
+msgstr "Charger vers extr."
 
 #. MSG_LOAD_TO_NOZZLE c=18
 #: ../../Firmware/ultralcd.cpp:5573
@@ -1130,7 +1127,7 @@ msgstr "LE MMU NE REPOND PAS"
 #. MSG_MMU_RESTORE_TEMP c=20 r=4
 #: ../../Firmware/mmu2.cpp:598
 msgid "MMU Retry: Restoring temperature..."
-msgstr "Nouvelle tentative MMU : Restauration de la temperature..."
+msgstr "Nouvelle tentative MMU: Restauration de la temperature..."
 
 #. MSG_MMU_FAILS c=15
 #: ../../Firmware/messages.cpp:68 ../../Firmware/ultralcd.cpp:1187
@@ -1271,7 +1268,7 @@ msgstr "Deplacer l'axe"
 #: ../../Firmware/mmu2_progress_converter.cpp:30
 #: ../../Firmware/mmu2_progress_converter.cpp:61
 msgid "Moving selector"
-msgstr "Deplacement du selecteur"
+msgstr "Deplacement select."
 
 #. MSG_NA c=3
 #: ../../Firmware/menu.cpp:196 ../../Firmware/messages.cpp:128
@@ -1385,8 +1382,7 @@ msgstr "Off"
 #. MSG_DEFAULT_SETTINGS_LOADED c=20 r=6
 #: ../../Firmware/Marlin_main.cpp:1513
 msgid "Old settings found. Default PID, Esteps etc. will be set."
-msgstr ""
-"Anciens reglages trouves. Le PID, les Esteps etc. par defaut seront regles"
+msgstr "Anciens reglages trouves. Le PID, les Esteps etc. par defaut seront regles"
 
 #. MSG_ON c=3
 #: ../../Firmware/SpoolJoin.cpp:38 ../../Firmware/messages.cpp:127
@@ -1462,7 +1458,7 @@ msgstr "ECHEC MOUV.T POULIE"
 #: ../../Firmware/mmu2_progress_converter.cpp:26
 #: ../../Firmware/mmu2_progress_converter.cpp:57
 msgid "Parking selector"
-msgstr "Parquage du sélecteur"
+msgstr "Parquage selecteur"
 
 #. MSG_PAUSE c=5
 #: ../../Firmware/messages.cpp:154 ../../Firmware/ultralcd.cpp:4248
@@ -1642,7 +1638,7 @@ msgstr "Chauf.pour decharger"
 #: ../../Firmware/mmu2_progress_converter.cpp:22
 #: ../../Firmware/mmu2_progress_converter.cpp:53
 msgid "Preparing blade"
-msgstr "Preparation de la lame"
+msgstr "Preparation lame"
 
 #. MSG_PRESS_KNOB c=20
 #: ../../Firmware/ultralcd.cpp:1809
@@ -1721,7 +1717,7 @@ msgstr ""
 #: ../../Firmware/mmu2_progress_converter.cpp:23
 #: ../../Firmware/mmu2_progress_converter.cpp:54
 msgid "Pushing filament"
-msgstr "Chargement du filament"
+msgstr "Chargement filament"
 
 #. MSG_TITLE_QUEUE_FULL c=20
 #: ../../Firmware/mmu2/errors_list.h:150 ../../Firmware/mmu2/errors_list.h:188
@@ -1772,7 +1768,7 @@ msgstr "Reinitialiser"
 #. MSG_BTN_RESTART_MMU c=9
 #: ../../Firmware/mmu2/errors_list.h:283 ../../Firmware/mmu2/errors_list.h:293
 msgid "Reset MMU"
-msgstr "Réinitialiser le MMU"
+msgstr "Reini MMU"
 
 #. MSG_CALIBRATE_BED_RESET c=18
 #: ../../Firmware/ultralcd.cpp:4888
@@ -1794,18 +1790,18 @@ msgstr "Reprise de l'impr."
 #: ../../Firmware/mmu2_progress_converter.cpp:28
 #: ../../Firmware/mmu2_progress_converter.cpp:59
 msgid "Retract from FINDA"
-msgstr "Rétraction de la FINDA"
+msgstr "Rétraction de FINDA"
 
 #. MSG_BTN_RETRY c=8
 #: ../../Firmware/mmu2/errors_list.h:281 ../../Firmware/mmu2/errors_list.h:291
 msgid "Retry"
-msgstr "Reessayer"
+msgstr "Ref."
 
 #. MSG_PROGRESS_RETURN_SELECTOR c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:25
 #: ../../Firmware/mmu2_progress_converter.cpp:56
 msgid "Returning selector"
-msgstr "Retournement du selecteur"
+msgstr "Retournement select."
 
 #. MSG_RIGHT c=10
 #: ../../Firmware/ultralcd.cpp:2495
@@ -1902,7 +1898,7 @@ msgstr "Selectionnez la temperature qui correspond a votre materiau."
 #: ../../Firmware/mmu2_progress_converter.cpp:21
 #: ../../Firmware/mmu2_progress_converter.cpp:52
 msgid "Selecting fil. slot"
-msgstr "Sélection du slot de fil."
+msgstr "Sélection du fil."
 
 #. MSG_SELFTEST_OK c=20
 #: ../../Firmware/ultralcd.cpp:6522
@@ -2101,7 +2097,7 @@ msgstr "ANOMALIE THERMIQUE"
 #. MSG_TM_AUTOTUNE_FAILED c=20
 #: ../../Firmware/temperature.cpp:2897
 msgid "TM autotune failed"
-msgstr "Echec du reglage auto du TM"
+msgstr "Echec regl. auto MT"
 
 #. MSG_TITLE_TMC_DRIVER_ERROR c=20
 #: ../../Firmware/mmu2/errors_list.h:134 ../../Firmware/mmu2/errors_list.h:172
@@ -2136,7 +2132,7 @@ msgstr "ERR SOUS TENSION TMC"
 #. MSG_TEMP_MODEL_AUTOTUNE c=20
 #: ../../Firmware/temperature.cpp:2882
 msgid "Temp. model autotune"
-msgstr "Reglage auto du model de temp."
+msgstr "Regl. auto mod temp."
 
 #. MSG_TEMPERATURE c=18
 #: ../../Firmware/ultralcd.cpp:4759
@@ -2246,13 +2242,13 @@ msgid ""
 "Unexpected FINDA reading. Ensure no filament is under FINDA and the selector "
 "is free. Check FINDA connection."
 msgstr ""
-"Valeur de FINDA inattendue. Assurez-vous qu'aucun filament n'est sous la "
-"FINDA et que le selecteur est libre. Verifiez la connexion de la FINDA."
+"Valeur de FINDA inattendue. Vérifiez qu'il n'y a pas de filament sous la "
+"FINDA, que le selecteur est libre, et la connexion de la FINDA."
 
 #. MSG_BTN_UNLOAD c=8
 #: ../../Firmware/mmu2/errors_list.h:284 ../../Firmware/mmu2/errors_list.h:294
 msgid "Unload"
-msgstr "Decharger"
+msgstr "Dech."
 
 #. MSG_UNLOAD_FILAMENT c=16
 #: ../../Firmware/messages.cpp:115 ../../Firmware/ultralcd.cpp:5574
@@ -2271,13 +2267,13 @@ msgstr "Dechargement fil."
 #: ../../Firmware/mmu2_progress_converter.cpp:11
 #: ../../Firmware/mmu2_progress_converter.cpp:37
 msgid "Unloading to FINDA"
-msgstr "Dechargement vers la FINDA"
+msgstr "Decharg.t vers FINDA"
 
 #. MSG_PROGRESS_UNLOAD_PULLEY c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:12
 #: ../../Firmware/mmu2_progress_converter.cpp:38
 msgid "Unloading to pulley"
-msgstr "Dechargement vers la poulie"
+msgstr "Dechar.t vers poulie"
 
 #. MSG_FIL_FAILED c=20 r=5
 #: ../../Firmware/ultralcd.cpp:6265
@@ -2370,7 +2366,7 @@ msgstr "Correct-X:"
 #. MSG_XFLASH c=18
 #: ../../Firmware/ultralcd.cpp:5609
 msgid "XFLASH init"
-msgstr ""
+msgstr "Init XFLASH"
 
 #. MSG_XYZ_DETAILS c=18
 #: ../../Firmware/ultralcd.cpp:1721

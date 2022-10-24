@@ -112,7 +112,7 @@ msgstr "Caricamento automatico attivo, premi la manopola e inserisci il filam."
 #: ../../Firmware/mmu2_progress_converter.cpp:16
 #: ../../Firmware/mmu2_progress_converter.cpp:42
 msgid "Avoiding grind"
-msgstr "Evitando la triturazione"
+msgstr "Evito triturazione"
 
 #. MSG_SELFTEST_AXIS c=16
 #: ../../Firmware/ultralcd.cpp:6997
@@ -663,25 +663,25 @@ msgstr "Control.vent"
 #: ../../Firmware/mmu2_progress_converter.cpp:13
 #: ../../Firmware/mmu2_progress_converter.cpp:39
 msgid "Feeding to FINDA"
-msgstr "Alimento fino alla FINDA"
+msgstr "Alim. in FINDA"
 
 #. MSG_PROGRESS_FEED_FSENSOR c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:31
 #: ../../Firmware/mmu2_progress_converter.cpp:62
 msgid "Feeding to FSensor"
-msgstr "Alimento fino a FSensor"
+msgstr "Alim. in FSensor"
 
 #. MSG_PROGRESS_FEED_EXTRUDER c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:14
 #: ../../Firmware/mmu2_progress_converter.cpp:40
 msgid "Feeding to extruder"
-msgstr "Alimento nell'estrusore"
+msgstr "Alim. in estrusore"
 
 #. MSG_PROGRESS_FEED_NOZZLE c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:15
 #: ../../Firmware/mmu2_progress_converter.cpp:41
 msgid "Feeding to nozzle"
-msgstr "Alimento nell'ugello"
+msgstr "Alim. in ugello"
 
 #. MSG_FIL_RUNOUTS c=15
 #: ../../Firmware/messages.cpp:32 ../../Firmware/ultralcd.cpp:1233
@@ -736,7 +736,7 @@ msgid ""
 "Filament sensor didn't trigger while loading the filament. Ensure the "
 "filament reached the fsensor and the sensor works."
 msgstr ""
-"Sensore del filamento non attivato durante il caric. filamento. Verif "
+"Sensore del fila-mento non attivato durante il caric. filamento. Verif "
 "che il filamento abbia raggiunto il sensore e che il sensore funzioni."
 
 #. MSG_DESC_FSENSOR_TOO_EARLY c=20 r=8
@@ -745,9 +745,8 @@ msgid ""
 "Filament sensor triggered too early while loading to extruder. Check there "
 "isn't anything stuck in PTFE tube. Check that sensor reads properly."
 msgstr ""
-"Sensore filamento attivato in anticipo durante il caricamento. Controlla "
-"che non ci siano residui bloccati nel tubo di PTFE. Controlla che il "
-"sensore legga correttamente."
+"Sensore fil. attiv-ato in anticipo dur-ante il caricamento. Controlla che non "
+"ci siano residui bloc-cati nel tubo di PTFE e il sensore legga correttamente."
 
 #. MSG_FILAMENT_USED c=19
 #: ../../Firmware/ultralcd.cpp:2350
@@ -1064,7 +1063,7 @@ msgstr "Carica filamento"
 #. MSG_LOAD_TO_EXTRUDER c=18
 #: ../../Firmware/messages.cpp:57 ../../Firmware/ultralcd.cpp:5555
 msgid "Load to extruder"
-msgstr "Carica nell'estrusore"
+msgstr "Carica su estr."
 
 #. MSG_LOAD_TO_NOZZLE c=18
 #: ../../Firmware/ultralcd.cpp:5556
@@ -2144,7 +2143,7 @@ msgstr "Temperature"
 #. MSG_TESTING_FILAMENT c=20
 #: ../../Firmware/messages.cpp:59 ../../Firmware/mmu2.cpp:444
 msgid "Testing filament"
-msgstr "Testando il filamento"
+msgstr "Provo il filamento"
 
 #. MSG_DESC_IDLER_CANNOT_HOME c=20 r=8
 #: ../../Firmware/mmu2/errors_list.h:215 ../../Firmware/mmu2/errors_list.h:254
@@ -2264,13 +2263,13 @@ msgstr "Scaricando filamento"
 #: ../../Firmware/mmu2_progress_converter.cpp:11
 #: ../../Firmware/mmu2_progress_converter.cpp:37
 msgid "Unloading to FINDA"
-msgstr "Scarica fino alla FINDA"
+msgstr "Scarico in FINDA"
 
 #. MSG_PROGRESS_UNLOAD_PULLEY c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:12
 #: ../../Firmware/mmu2_progress_converter.cpp:38
 msgid "Unloading to pulley"
-msgstr "Scarico alla puleggia"
+msgstr "Scarico in puleggia"
 
 #. MSG_FIL_FAILED c=20 r=5
 #: ../../Firmware/ultralcd.cpp:6248

@@ -104,8 +104,7 @@ msgstr "Autoladowanie fil."
 
 #. MSG_AUTOLOADING_ENABLED c=20 r=4
 #: ../../Firmware/ultralcd.cpp:2301
-msgid ""
-"Autoloading filament is active, just press the knob and insert filament..."
+msgid "Autoloading filament is active, just press the knob and insert filament..."
 msgstr "Autoladowanie filamentu wlaczone, nacisnij pokretlo i wsun filament..."
 
 #. MSG_PROGRESS_AVOID_GRIND c=20
@@ -143,7 +142,7 @@ msgstr "Stol"
 #: ../../Firmware/Marlin_main.cpp:6293 ../../Firmware/messages.cpp:14
 #: ../../Firmware/ultralcd.cpp:585
 msgid "Bed Heating"
-msgstr "Grzanie stolu.."
+msgstr "Grzanie stolu"
 
 #. MSG_BED_DONE c=20
 #: ../../Firmware/Marlin_main.cpp:6331 ../../Firmware/messages.cpp:13
@@ -459,7 +458,7 @@ msgstr ""
 #. MSG_BTN_CONTINUE c=8
 #: ../../Firmware/mmu2/errors_list.h:282 ../../Firmware/mmu2/errors_list.h:292
 msgid "Done"
-msgstr "Gotowe"
+msgstr "Wyk."
 
 #. MSG_EXTRUDER_CORRECTION c=13
 #: ../../Firmware/ultralcd.cpp:4176
@@ -470,7 +469,7 @@ msgstr "Korekcja-E:"
 #: ../../Firmware/mmu2_progress_converter.cpp:19
 #: ../../Firmware/mmu2_progress_converter.cpp:48
 msgid "ERR Help filament"
-msgstr "ERR fil. wymaga pomocy"
+msgstr "ERR fil. wym. pomocy"
 
 #. MSG_PROGRESS_ERR_INTERNAL c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:18
@@ -541,7 +540,7 @@ msgstr "Ekstruder"
 #: ../../Firmware/messages.cpp:35 ../../Firmware/ultralcd.cpp:1144
 #: ../../Firmware/ultralcd.cpp:7319
 msgid "Hotend fan:"
-msgstr "Went. hotend:"
+msgstr "WentHotend:"
 
 #. MSG_INFO_EXTRUDER c=18
 #: ../../Firmware/ultralcd.cpp:1722
@@ -558,7 +557,7 @@ msgstr "Autolad. fil."
 #: ../../Firmware/messages.cpp:46 ../../Firmware/ultralcd.cpp:4232
 #: ../../Firmware/ultralcd.cpp:4239
 msgid "F. jam detect"
-msgstr "Wykr. zaciecie fil."
+msgstr "Zaciecie fil."
 
 #. MSG_FSENSOR_RUNOUT c=13
 #: ../../Firmware/messages.cpp:44 ../../Firmware/ultralcd.cpp:4229
@@ -569,7 +568,7 @@ msgstr "Koniec fil."
 #. MSG_TITLE_FIL_ALREADY_LOADED c=20
 #: ../../Firmware/mmu2/errors_list.h:148 ../../Firmware/mmu2/errors_list.h:186
 msgid "FILAMENT ALREADY LOA"
-msgstr "FILAMENT JUZ ZALADOWANY"
+msgstr "FILAMENT JUZ ZALAD."
 
 #. MSG_TITLE_FINDA_DIDNT_TRIGGER c=20
 #: ../../Firmware/mmu2/errors_list.h:118 ../../Firmware/mmu2/errors_list.h:156
@@ -582,7 +581,7 @@ msgid ""
 "FINDA didn't switch off while unloading filament. Try unloading manually. "
 "Ensure filament can move and FINDA works."
 msgstr ""
-"FINDA nie wylaczyla sie podczas rozladowywania filamentu. Sprobuj rozladowac "
+"FINDA nie wylaczyla sie podczas rozlad-owywania filamentu. Sprobuj rozladowac "
 "recznie. Sprawdz, czy filament moze sie poruszac i czy FINDA dziala."
 
 #. MSG_DESC_FINDA_DIDNT_TRIGGER c=20 r=8
@@ -613,12 +612,12 @@ msgstr "FSENSOR NIE WLACZ."
 #. MSG_TITLE_FSENSOR_TOO_EARLY c=20
 #: ../../Firmware/mmu2/errors_list.h:123 ../../Firmware/mmu2/errors_list.h:161
 msgid "FSENSOR TOO EARLY"
-msgstr "FSENSOR ZBYT WCZESNIE"
+msgstr "FSENSOR ZBYT WCZESN."
 
 #. MSG_TITLE_FSENSOR_DIDNT_GO_OFF c=20
 #: ../../Firmware/mmu2/errors_list.h:121 ../../Firmware/mmu2/errors_list.h:159
 msgid "FSENSOR: FIL. STUCK"
-msgstr "FSENSOR: FIL. ZABLOK."
+msgstr "FSENSOR: FIL. ZABLOK"
 
 #. MSG_TITLE_FW_RUNTIME_ERROR c=20
 #: ../../Firmware/mmu2/errors_list.h:152 ../../Firmware/mmu2/errors_list.h:190
@@ -745,7 +744,7 @@ msgid ""
 "Filament sensor triggered too early while loading to extruder. Check there "
 "isn't anything stuck in PTFE tube. Check that sensor reads properly."
 msgstr ""
-"Czujnik filamentu zadzialal zbyt wczesnie podczas ladowania do ekstrudera. "
+"Cz. filam. zadzialal zbyt wczesnie podcz. ladowania do ekstr. "
 "Sprawdz czy nic nie utknelo w rurce PTFE. Sprawdz czy czujnik odczytuje "
 "prawidlowo."
 
@@ -1096,7 +1095,7 @@ msgstr "Glosny"
 #. MSG_TITLE_FW_UPDATE_NEEDED c=20
 #: ../../Firmware/mmu2/errors_list.h:151 ../../Firmware/mmu2/errors_list.h:189
 msgid "MMU FW UPDATE NEEDED"
-msgstr "MMU FW WYMAGA AKTUAL."
+msgstr "MMU FW WYMAGA AKTUAL"
 
 #. MSG_DESC_QUEUE_FULL c=20 r=8
 #: ../../Firmware/mmu2/errors_list.h:230 ../../Firmware/mmu2/errors_list.h:268
@@ -1320,8 +1319,7 @@ msgstr "Nie kreci sie"
 
 #. MSG_WIZARD_V2_CAL c=20 r=8
 #: ../../Firmware/ultralcd.cpp:3928
-msgid ""
-"Now I will calibrate distance between tip of the nozzle and heatbed surface."
+msgid "Now I will calibrate distance between tip of the nozzle and heatbed surface."
 msgstr "Kalibruje odleglosc miedzy koncowka dyszy a powierzchnia druku."
 
 #. MSG_WIZARD_WILL_PREHEAT c=20 r=4
@@ -1442,7 +1440,7 @@ msgstr ""
 #. MSG_TITLE_PULLEY_CANNOT_MOVE c=20
 #: ../../Firmware/mmu2/errors_list.h:122 ../../Firmware/mmu2/errors_list.h:160
 msgid "PULLEY CANNOT MOVE"
-msgstr "RADELKO NIE RUSZA SIE"
+msgstr "RADELKO NIE RUSZA"
 
 #. MSG_PROGRESS_PARK_SELECTOR c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:26
@@ -1822,7 +1820,7 @@ msgstr "WYBIERAK NIE BAZUJE"
 #. MSG_TITLE_SELECTOR_CANNOT_MOVE c=20
 #: ../../Firmware/mmu2/errors_list.h:124 ../../Firmware/mmu2/errors_list.h:163
 msgid "SELECTOR CANNOT MOVE"
-msgstr "WYBIERAK NIE RUSZA SIE"
+msgstr "WYBIERAK NIE RUSZA"
 
 #. MSG_STOPPED c=20
 #: ../../Firmware/Marlin_main.cpp:9706 ../../Firmware/messages.cpp:112
@@ -1881,7 +1879,7 @@ msgstr "Wybierz temperature, ktora odpowiada Twojemu filamentowi."
 #: ../../Firmware/mmu2_progress_converter.cpp:21
 #: ../../Firmware/mmu2_progress_converter.cpp:52
 msgid "Selecting fil. slot"
-msgstr "Wybieranie slotu fil."
+msgstr "Wybieranie slotu fil"
 
 #. MSG_SELFTEST_OK c=20
 #: ../../Firmware/ultralcd.cpp:6522
@@ -2112,12 +2110,12 @@ msgstr "PRZEGRZANIE TMC"
 #: ../../Firmware/mmu2/errors_list.h:140 ../../Firmware/mmu2/errors_list.h:178
 #: ../../Firmware/mmu2/errors_list.h:179 ../../Firmware/mmu2/errors_list.h:180
 msgid "TMC UNDERVOLTAGE ERR"
-msgstr "ZBYT NISKIE NAPIECIE TMC"
+msgstr "ZA NIS. NAPIECIE TMC"
 
 #. MSG_TEMP_MODEL_AUTOTUNE c=20
 #: ../../Firmware/temperature.cpp:2882
 msgid "Temp. model autotune"
-msgstr "Autotune modelu temp."
+msgstr "Autotune modelu temp"
 
 #. MSG_TEMPERATURE c=18
 #: ../../Firmware/ultralcd.cpp:4759
@@ -2274,7 +2272,7 @@ msgstr "Napiecia"
 #: ../../Firmware/mmu2/errors_list.h:128 ../../Firmware/mmu2/errors_list.h:166
 #: ../../Firmware/mmu2/errors_list.h:167 ../../Firmware/mmu2/errors_list.h:168
 msgid "WARNING TMC TOO HOT"
-msgstr "UWAGA TMC ZBYT GORACY"
+msgstr "UWAGA TMC ZA GORACY"
 
 #. MSG_CRASH_DET_STEALTH_FORCE_OFF c=20 r=4
 #: ../../Firmware/ultralcd.cpp:3551

@@ -458,7 +458,7 @@ msgstr ""
 #. MSG_BTN_CONTINUE c=8
 #: ../../Firmware/mmu2/errors_list.h:282 ../../Firmware/mmu2/errors_list.h:292
 msgid "Done"
-msgstr "Hotovo"
+msgstr "Konec"
 
 #. MSG_EXTRUDER_CORRECTION c=13
 #: ../../Firmware/ultralcd.cpp:4176
@@ -557,7 +557,7 @@ msgstr "F. autozav."
 #: ../../Firmware/messages.cpp:46 ../../Firmware/ultralcd.cpp:4232
 #: ../../Firmware/ultralcd.cpp:4239
 msgid "F. jam detect"
-msgstr "Detekce zaseku fil."
+msgstr "Det. zaseku"
 
 #. MSG_FSENSOR_RUNOUT c=13
 #: ../../Firmware/messages.cpp:44 ../../Firmware/ultralcd.cpp:4229
@@ -1060,7 +1060,7 @@ msgstr "Zavest filament"
 #. MSG_LOAD_TO_EXTRUDER c=18
 #: ../../Firmware/messages.cpp:57 ../../Firmware/ultralcd.cpp:5572
 msgid "Load to extruder"
-msgstr "Zavest do extruderu"
+msgstr "Zavest do extr."
 
 #. MSG_LOAD_TO_NOZZLE c=18
 #: ../../Firmware/ultralcd.cpp:5573
@@ -1778,7 +1778,7 @@ msgstr "Vysouvani od FINDy"
 #. MSG_BTN_RETRY c=8
 #: ../../Firmware/mmu2/errors_list.h:281 ../../Firmware/mmu2/errors_list.h:291
 msgid "Retry"
-msgstr "Opakovat"
+msgstr "Znovu"
 
 #. MSG_PROGRESS_RETURN_SELECTOR c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:25
@@ -2342,7 +2342,7 @@ msgstr "Korekce X:"
 #. MSG_XFLASH c=18
 #: ../../Firmware/ultralcd.cpp:5609
 msgid "XFLASH init"
-msgstr ""
+msgstr "XFLASH init"
 
 #. MSG_XYZ_DETAILS c=18
 #: ../../Firmware/ultralcd.cpp:1721

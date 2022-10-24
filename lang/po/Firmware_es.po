@@ -53,7 +53,7 @@ msgstr "Todo bien"
 #: ../../Firmware/messages.cpp:119 ../../Firmware/ultralcd.cpp:4133
 #: ../../Firmware/ultralcd.cpp:4142
 msgid "All is done. Happy printing!"
-msgstr "Terminado! Feliz impresion!"
+msgstr "Terminado. Felices impresiones!"
 
 #. MSG_SORT_ALPHA c=8
 #: ../../Firmware/messages.cpp:142 ../../Firmware/ultralcd.cpp:4402
@@ -63,7 +63,7 @@ msgstr "Alfabet"
 #. MSG_ALWAYS c=6
 #: ../../Firmware/messages.cpp:8 ../../Firmware/ultralcd.cpp:4287
 msgid "Always"
-msgstr "Siempre"
+msgstr "Siemp."
 
 #. MSG_AMBIENT c=14
 #: ../../Firmware/ultralcd.cpp:1406
@@ -421,7 +421,7 @@ msgstr "Oscuro"
 #. MSG_BTN_DISABLE_MMU c=9
 #: ../../Firmware/mmu2/errors_list.h:286 ../../Firmware/mmu2/errors_list.h:296
 msgid "Disable"
-msgstr "Desactivar"
+msgstr "Desactiva"
 
 #. MSG_DISABLE_STEPPERS c=18
 #: ../../Firmware/ultralcd.cpp:4764
@@ -433,7 +433,7 @@ msgstr "Apagar motores"
 #: ../../Firmware/mmu2_progress_converter.cpp:36
 #: ../../Firmware/mmu2_progress_converter.cpp:44
 msgid "Disengaging idler"
-msgstr "Desenganchando tensor"
+msgstr "Soltando tensor"
 
 #. MSG_BABYSTEP_Z_NOT_SET c=20 r=12
 #: ../../Firmware/Marlin_main.cpp:1530 ../../Firmware/Marlin_main.cpp:3400
@@ -557,7 +557,7 @@ msgstr "Autocarg.fil."
 #: ../../Firmware/messages.cpp:46 ../../Firmware/ultralcd.cpp:4232
 #: ../../Firmware/ultralcd.cpp:4239
 msgid "F. jam detect"
-msgstr "Detecc. atasco fil."
+msgstr "Det. atasco f"
 
 #. MSG_FSENSOR_RUNOUT c=13
 #: ../../Firmware/messages.cpp:44 ../../Firmware/ultralcd.cpp:4229
@@ -582,7 +582,7 @@ msgid ""
 "Ensure filament can move and FINDA works."
 msgstr ""
 "FINDA no se apagó mientras descargaba el filamento. Intenta descargar "
-"manualmente. Asegúrate de que el filamento puede moverse y FINDA funciona."
+"manualmente. Comprueba que el fi-lamento puede mover-se y FINDA funciona."
 
 #. MSG_DESC_FINDA_DIDNT_TRIGGER c=20 r=8
 #: ../../Firmware/mmu2/errors_list.h:196 ../../Firmware/mmu2/errors_list.h:236
@@ -662,13 +662,13 @@ msgstr "Comprob.vent"
 #: ../../Firmware/mmu2_progress_converter.cpp:13
 #: ../../Firmware/mmu2_progress_converter.cpp:39
 msgid "Feeding to FINDA"
-msgstr "Alimentando hasta FINDA"
+msgstr "Alimenta hasta FINDA"
 
 #. MSG_PROGRESS_FEED_FSENSOR c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:31
 #: ../../Firmware/mmu2_progress_converter.cpp:62
 msgid "Feeding to FSensor"
-msgstr "Alimentando hasta FSensor"
+msgstr "Empuja hasta FSensor"
 
 #. MSG_PROGRESS_FEED_EXTRUDER c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:14
@@ -745,7 +745,7 @@ msgid ""
 "isn't anything stuck in PTFE tube. Check that sensor reads properly."
 msgstr ""
 "El sensor de filamento se activó demasiado pronto al cargar el extrusor. "
-"Comprueba que no haya nada atascado en el tubo de teflón. Comprueba que el sensor leer correctamente."
+"Comprueba que no ha-ya nada atascado en el tubo de teflón y que el sensor va ok."
 
 #. MSG_FILAMENT_USED c=19
 #: ../../Firmware/ultralcd.cpp:2363
@@ -969,7 +969,7 @@ msgid ""
 "Insert the filament (do not load it) into the extruder and then press the "
 "knob."
 msgstr ""
-"Inserte el filamento (no lo cargue) en el extrusor y luego presione el dial."
+"Inserta el filamento (no lo cargue) en el extrusor y luego presiona el dial."
 
 #. MSG_DESC_FW_RUNTIME_ERROR c=20 r=11
 #: ../../Firmware/mmu2/errors_list.h:232 ../../Firmware/mmu2/errors_list.h:270
@@ -990,7 +990,7 @@ msgstr "Esta el filamento cargado?"
 #: ../../Firmware/Marlin_main.cpp:3301 ../../Firmware/Marlin_main.cpp:4911
 #: ../../Firmware/messages.cpp:110 ../../Firmware/ultralcd.cpp:4050
 msgid "Is steel sheet on heatbed?"
-msgstr "Esta coloc.la lamina sobre la base?"
+msgstr "Esta c. la lamina sobre la base?"
 
 #. MSG_ITERATION c=12
 #: ../../Firmware/mesh_bed_calibration.cpp:2252 ../../Firmware/messages.cpp:51
@@ -1096,7 +1096,7 @@ msgstr "Alto"
 #. MSG_TITLE_FW_UPDATE_NEEDED c=20
 #: ../../Firmware/mmu2/errors_list.h:151 ../../Firmware/mmu2/errors_list.h:189
 msgid "MMU FW UPDATE NEEDED"
-msgstr "ACT. FW MMU NECESARIA"
+msgstr "ACT. FW MMU PRECISA"
 
 #. MSG_DESC_QUEUE_FULL c=20 r=8
 #: ../../Firmware/mmu2/errors_list.h:230 ../../Firmware/mmu2/errors_list.h:268
@@ -1136,9 +1136,8 @@ msgid ""
 "MMU unit not responding correctly. Check the wiring and connectors. If the "
 "issue persists, contact support."
 msgstr ""
-"La unidad MMU no responde correctamente. Comprueba el cableado y los "
-"conectores. Si el problema persiste, ponte en contacto con el servicio "
-"tecnico."
+"La unidad MMU no responde correcta-mente. Comprueba el cableado y los "
+"conectores. Si el problema persiste, contacta con el servicio técnico."
 
 #. MSG_DESC_MMU_NOT_RESPONDING c=20 r=8
 #: ../../Firmware/mmu2/errors_list.h:226 ../../Firmware/mmu2/errors_list.h:264
@@ -1173,7 +1172,7 @@ msgstr "Menu principal"
 #. MSG_MEASURED_SKEW c=14
 #: ../../Firmware/ultralcd.cpp:2535
 msgid "Measured skew"
-msgstr "No a escuadra"
+msgstr "Desv. medida"
 
 #. MSG_MEASURE_BED_REFERENCE_HEIGHT_LINE1 c=20 r=3
 #: ../../Firmware/Marlin_main.cpp:3282
@@ -1190,7 +1189,7 @@ msgstr "Malla"
 #: ../../Firmware/messages.cpp:149 ../../Firmware/ultralcd.cpp:4794
 #: ../../Firmware/ultralcd.cpp:4881
 msgid "Mesh Bed Leveling"
-msgstr "Nivela. Mesh Level"
+msgstr "Nivela. Malla Base"
 
 #. MSG_MODE c=6
 #: ../../Firmware/messages.cpp:104 ../../Firmware/ultralcd.cpp:4334
@@ -1348,7 +1347,7 @@ msgstr "Boquilla"
 #. MSG_NOZZLE_DIAMETER c=10
 #: ../../Firmware/messages.cpp:137 ../../Firmware/ultralcd.cpp:4544
 msgid "Nozzle d."
-msgstr "D-boquilla"
+msgstr "D boquilla"
 
 #. MSG_PROGRESS_OK c=4
 #: ../../Firmware/mmu2_progress_converter.cpp:8
@@ -1440,7 +1439,7 @@ msgid ""
 "Settings->PINDA cal."
 msgstr ""
 "La calibracion PINDA esta finalizada y activa. Se puede desactivar en el "
-"menu Configuracion->Cal. PINDA"
+"menu Configuracion -> Cal. PINDA"
 
 #. MSG_TITLE_PULLEY_CANNOT_MOVE c=20
 #: ../../Firmware/mmu2/errors_list.h:122 ../../Firmware/mmu2/errors_list.h:160
@@ -1487,7 +1486,7 @@ msgid ""
 "rebooting the printer."
 msgstr ""
 "Lee el manual y resuelve el problema. Despues, reinicia la impresora y "
-"continua con el Wizard"
+"continua con el Asistente"
 
 #. MSG_CHECK_IR_CONNECTION c=20 r=4
 #: ../../Firmware/ultralcd.cpp:6258
@@ -1503,12 +1502,12 @@ msgstr "Controla:"
 #. MSG_WIZARD_CLEAN_HEATBED c=20 r=8
 #: ../../Firmware/ultralcd.cpp:4110
 msgid "Please clean heatbed and then press the knob."
-msgstr "Limpia la superficie de la base, por favor, y luego presione el dial."
+msgstr "Limpia la superficie de la base, por favor, y luego presiona el dial."
 
 #. MSG_CONFIRM_NOZZLE_CLEAN c=20 r=8
 #: ../../Firmware/Marlin_main.cpp:3280 ../../Firmware/messages.cpp:24
 msgid "Please clean the nozzle for calibration. Click when done."
-msgstr "Limpia boquilla para calibracion. Click cuando acabes."
+msgstr "Limpia boquilla para calibracion. Clic cuando acabes."
 
 #. MSG_WIZARD_LOAD_FILAMENT c=20 r=6
 #: ../../Firmware/ultralcd.cpp:3915
@@ -1530,20 +1529,18 @@ msgstr ""
 #. MSG_PLEASE_LOAD_PLA c=20 r=4
 #: ../../Firmware/ultralcd.cpp:3835
 msgid "Please load filament first."
-msgstr "Por favor, cargar primero el filamento."
+msgstr "Por favor, carga primero el filamento."
 
 #. MSG_CHECK_IDLER c=20 r=5
 #: ../../Firmware/Marlin_main.cpp:3581
 msgid "Please open idler and remove filament manually."
-msgstr ""
-"Por favor abate el rodillo de empuje (idler) y retira el filamento "
-"manualmente."
+msgstr "Por favor abre el tensor y retira el filamento manualmente."
 
 #. MSG_PLACE_STEEL_SHEET c=20 r=5
 #: ../../Firmware/mesh_bed_calibration.cpp:2795 ../../Firmware/messages.cpp:74
 #: ../../Firmware/ultralcd.cpp:4052
 msgid "Please place steel sheet on heatbed."
-msgstr "Por favor coloca la chapa de acero en la base calefactable."
+msgstr "Por favor coloca la lam. de acero en la base calefactable."
 
 #. MSG_PRESS_TO_UNLOAD c=20 r=4
 #: ../../Firmware/Marlin_main.cpp:11532 ../../Firmware/Marlin_main.cpp:11585
@@ -1554,7 +1551,7 @@ msgstr "Por favor, pulsa el dial para descargar el filamento"
 #. MSG_PULL_OUT_FILAMENT c=20 r=4
 #: ../../Firmware/messages.cpp:80 ../../Firmware/ultralcd.cpp:5221
 msgid "Please pull out filament immediately"
-msgstr "Por favor retire el filamento de inmediato"
+msgstr "Por favor retira el filamento de inmediato"
 
 #. MSG_REMOVE_SHIPPING_HELPERS c=20 r=3
 #: ../../Firmware/ultralcd.cpp:4047
@@ -1565,7 +1562,7 @@ msgstr "Por favor retira los soportes de envio primero."
 #: ../../Firmware/Marlin_main.cpp:3303 ../../Firmware/Marlin_main.cpp:4921
 #: ../../Firmware/messages.cpp:83
 msgid "Please remove steel sheet from heatbed."
-msgstr "Por favor retire la chapa de acero de la base calefactable."
+msgstr "Por favor retira la lam. de acero de la base calefactable."
 
 #. MSG_RUN_XYZ c=20 r=4
 #: ../../Firmware/Marlin_main.cpp:4897
@@ -1575,25 +1572,25 @@ msgstr "Por favor realiza la calibracion XYZ primero."
 #. MSG_UNLOAD_FILAMENT_REPEAT c=20 r=4
 #: ../../Firmware/ultralcd.cpp:6255
 msgid "Please unload the filament first, then repeat this action."
-msgstr "Primero descargue el filamento, luego repita esta accion."
+msgstr "Primero descarga el filamento, luego repite esta accion."
 
 #. MSG_NEW_FIRMWARE_PLEASE_UPGRADE c=20
 #: ../../Firmware/util.cpp:203
 msgid "Please upgrade."
-msgstr "Actualize por favor"
+msgstr "Actualiza por favor."
 
 #. MSG_PLEASE_WAIT c=20
 #: ../../Firmware/Marlin_main.cpp:3577 ../../Firmware/Marlin_main.cpp:3595
 #: ../../Firmware/Marlin_main.cpp:7957 ../../Firmware/messages.cpp:75
 #: ../../Firmware/ultralcd.cpp:2202 ../../Firmware/ultralcd.cpp:2213
 msgid "Please wait"
-msgstr "Por Favor Espere"
+msgstr "Por favor espere"
 
 #. MSG_POWER_FAILURES c=15
 #: ../../Firmware/messages.cpp:76 ../../Firmware/ultralcd.cpp:1245
 #: ../../Firmware/ultralcd.cpp:1274
 msgid "Power failures"
-msgstr "Fallas energia"
+msgstr "Fallos energia"
 
 #. MSG_PREHEAT c=18
 #: ../../Firmware/ultralcd.cpp:5511
@@ -1738,7 +1735,7 @@ msgstr "Recuper. impresion"
 #: ../../Firmware/Marlin_main.cpp:3461
 msgid "Remove old filament and press the knob to start loading new filament."
 msgstr ""
-"Retire el filamento viejo y presione el dial para comenzar a cargar el nuevo "
+"Retira el filamento viejo y presione el dial para comenzar a cargar el nuevo "
 "filamento."
 
 #. MSG_RENAME c=18
@@ -1791,7 +1788,7 @@ msgstr "Retraer del FINDA"
 #. MSG_BTN_RETRY c=8
 #: ../../Firmware/mmu2/errors_list.h:281 ../../Firmware/mmu2/errors_list.h:291
 msgid "Retry"
-msgstr "Reintentar"
+msgstr "Reint"
 
 #. MSG_PROGRESS_RETURN_SELECTOR c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:25
@@ -1815,7 +1812,7 @@ msgid ""
 "Running Wizard will delete current calibration results and start from the "
 "beginning. Continue?"
 msgstr ""
-"Ejecutar el Wizard borrara los valores de calibracion actuales y comenzara "
+"Ejecutar el Asistente borrara los valores de calibracion actuales y comenzara "
 "de nuevo. Continuar?"
 
 #. MSG_SD_CARD c=8
@@ -1937,7 +1934,7 @@ msgstr "Info sensor"
 #. MSG_FS_VERIFIED c=20 r=3
 #: ../../Firmware/ultralcd.cpp:6262
 msgid "Sensor verified, remove the filament now."
-msgstr "Sensor verificado, retire el filamento ahora."
+msgstr "Sensor verificado, retira el filamento ahora."
 
 #. MSG_SET_TEMPERATURE c=20
 #: ../../Firmware/ultralcd.cpp:2771
@@ -1955,7 +1952,7 @@ msgstr "Configuracion"
 #. MSG_SEVERE_SKEW c=14
 #: ../../Firmware/ultralcd.cpp:2538
 msgid "Severe skew"
-msgstr "Severo sesgar"
+msgstr "Desv. severa"
 
 #. MSG_SHEET c=10
 #: ../../Firmware/menu.cpp:209 ../../Firmware/menu.cpp:221
@@ -1990,7 +1987,7 @@ msgstr "Acallar"
 #. MSG_SLIGHT_SKEW c=14
 #: ../../Firmware/ultralcd.cpp:2537
 msgid "Slight skew"
-msgstr "Ligera sesgar"
+msgstr "Desv. ligera"
 
 #. MSG_FILE_CNT c=20 r=6
 #: ../../Firmware/cardreader.cpp:818
@@ -2039,8 +2036,7 @@ msgstr "Ventilador girando"
 #. MSG_TEMP_CAL_WARNING c=20 r=4
 #: ../../Firmware/Marlin_main.cpp:4910
 msgid "Stable ambient temperature 21-26C is needed a rigid stand is required."
-msgstr ""
-"Se necesita una temperatura ambiente ente 21 y 26C y un soporte rigido."
+msgstr "Se necesita una temperatura ambiente ente 21 y 26C y un soporte rigido."
 
 #. MSG_STATISTICS c=18
 #: ../../Firmware/ultralcd.cpp:5598
@@ -2119,7 +2115,7 @@ msgstr "CORTO DRIVER TMC"
 #: ../../Firmware/mmu2/errors_list.h:131 ../../Firmware/mmu2/errors_list.h:169
 #: ../../Firmware/mmu2/errors_list.h:170 ../../Firmware/mmu2/errors_list.h:171
 msgid "TMC OVERHEAT ERROR"
-msgstr "ERROR SBRVOLTAJE TMC"
+msgstr "ERROR SOBRECAL TMC"
 
 #. MSG_TITLE_TMC_UNDERVOLTAGE_ERROR c=20
 #: ../../Firmware/mmu2/errors_list.h:140 ../../Firmware/mmu2/errors_list.h:178
@@ -2222,7 +2218,7 @@ msgstr "Filamento total"
 #. MSG_TOTAL_PRINT_TIME c=19
 #: ../../Firmware/ultralcd.cpp:2386
 msgid "Total print time"
-msgstr "Tiempo total"
+msgstr "Tiempo total imp."
 
 #. MSG_TUNE c=18
 #: ../../Firmware/ultralcd.cpp:5509
@@ -2246,20 +2242,20 @@ msgstr ""
 #. MSG_BTN_UNLOAD c=8
 #: ../../Firmware/mmu2/errors_list.h:284 ../../Firmware/mmu2/errors_list.h:294
 msgid "Unload"
-msgstr "Descargar"
+msgstr "Desc."
 
 #. MSG_UNLOAD_FILAMENT c=16
 #: ../../Firmware/messages.cpp:115 ../../Firmware/ultralcd.cpp:5574
 #: ../../Firmware/ultralcd.cpp:5591
 msgid "Unload filament"
-msgstr "Soltar filamento"
+msgstr "Descargar fil."
 
 #. MSG_UNLOADING_FILAMENT c=20
 #: ../../Firmware/Marlin_main.cpp:3502 ../../Firmware/messages.cpp:116
 #: ../../Firmware/mmu2_progress_converter.cpp:50
 #: ../../Firmware/ultralcd.cpp:5193
 msgid "Unloading filament"
-msgstr "Soltando filamento"
+msgstr "Descargando fil."
 
 #. MSG_PROGRESS_UNLOAD_FINDA c=20
 #: ../../Firmware/mmu2_progress_converter.cpp:11
@@ -2276,7 +2272,7 @@ msgstr "Descarga hasta polea"
 #. MSG_FIL_FAILED c=20 r=5
 #: ../../Firmware/ultralcd.cpp:6265
 msgid "Verification failed, remove the filament and try again."
-msgstr "La verificacion fallo, retire el filamento e intente nuevamente."
+msgstr "La verificacion fallo, retira el filamento e intenta nuevamente."
 
 #. MSG_MENU_VOLTAGES c=18
 #: ../../Firmware/ultralcd.cpp:1732
@@ -2333,12 +2329,12 @@ msgstr ""
 #. MSG_CHANGED_MOTHERBOARD c=20 r=4
 #: ../../Firmware/Marlin_main.cpp:1497
 msgid "Warning: motherboard type changed."
-msgstr "Cuidado: el tipo de placa ha cambiado."
+msgstr "Aviso: el tipo de placa ha cambiado."
 
 #. MSG_CHANGED_PRINTER c=20 r=4
 #: ../../Firmware/Marlin_main.cpp:1501
 msgid "Warning: printer type changed."
-msgstr "Cuidado: Ha cambiado el tipo de impresora."
+msgstr "Aviso: ha cambiado el tipo de impresora."
 
 #. MSG_UNLOAD_SUCCESSFUL c=20 r=2
 #: ../../Firmware/Marlin_main.cpp:3574
@@ -2365,7 +2361,7 @@ msgstr "Corregir-X:"
 #. MSG_XFLASH c=18
 #: ../../Firmware/ultralcd.cpp:5609
 msgid "XFLASH init"
-msgstr ""
+msgstr "XFLASH init"
 
 #. MSG_XYZ_DETAILS c=18
 #: ../../Firmware/ultralcd.cpp:1721
@@ -2375,13 +2371,13 @@ msgstr "Detalles cal. XYZ"
 #. MSG_BED_SKEW_OFFSET_DETECTION_SKEW_EXTREME c=20 r=8
 #: ../../Firmware/ultralcd.cpp:3356
 msgid "XYZ calibration all right. Skew will be corrected automatically."
-msgstr "Calibracion XYZ correcta. La inclinacion se corregira automaticamente."
+msgstr "Calibracion XYZ correcta. La desviacion se corregira automaticamente."
 
 #. MSG_BED_SKEW_OFFSET_DETECTION_SKEW_MILD c=20 r=8
 #: ../../Firmware/ultralcd.cpp:3353
 msgid "XYZ calibration all right. X/Y axes are slightly skewed. Good job!"
 msgstr ""
-"Calibracion XYZ correcta. Los ejes X / Y estan ligeramente inclinados. Buen "
+"Calibracion XYZ correcta. Los ejes X/Y estan ligeramente desviados. Buen "
 "trabajo!"
 
 #. MSG_BED_SKEW_OFFSET_DETECTION_WARNING_FRONT_BOTH_FAR c=20 r=8
@@ -2467,7 +2463,7 @@ msgstr ""
 #. MSG_WIZARD_QUIT c=20 r=8
 #: ../../Firmware/messages.cpp:121 ../../Firmware/ultralcd.cpp:4149
 msgid "You can always resume the Wizard from Calibration -> Wizard."
-msgstr "Siempre puedes acceder al asistente desde Calibracion -> Wizard"
+msgstr "Siempre puedes acceder al asistente desde Calibracion -> Asistente"
 
 #. MSG_Z_CORRECTION c=13
 #: ../../Firmware/ultralcd.cpp:4174
