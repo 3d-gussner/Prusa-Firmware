@@ -1,19 +1,19 @@
+# Build
+
 # Table of contents
 
 <!--ts-->
-   * Build
-     * [Linux build](#linux)
-       * [Cmake](#cmake)
-       * [PF-build](#pf-build)
-     * [Windows, Linux and Mac](#windows-linux-and-mac)
-       * [Visual Studio Code](#visual-studio-code)
-     * [Arduino IDE (deprecated)](#arduino-ide-deprecated)
+   * [Linux build](#linux)
+     * [Cmake](#cmake)
+     * [PF-build](#pf-build)
+   * [Windows, Linux and Mac](#windows-linux-and-mac)
+     * [Visual Studio Code](#visual-studio-code)
+   * [Arduino IDE (deprecated)](#arduino-ide-deprecated)
    * [Documentation](#documentation)
 <!--te-->
 
-# Build
 ## Linux
-There are two ways to build Prusa-Firmware on Linux: using [CMake](#cmake) (recommended for developers) or with [PF-build](#pf-build) which is more user-friendly for casual users.
+There are three ways to build Prusa-Firmware on Linux: using [CMake](#cmake), [VSCode](#visual-studio-code) (recommended for developers) or with [PF-build](#pf-build) which is more user-friendly for casual users.
 
 ### CMake
 #### Quick-start
