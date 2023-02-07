@@ -15,9 +15,9 @@ This repository contains _development material only!_
      * [Linux build](#linux)
        * [Cmake](#cmake)
        * [PF-build](#pf-build)
-     * [Windows, Linux and Mac](#windows,-linux-and-mac)
+     * [Windows, Linux and Mac](#windows-linux-and-mac)
        * [Visual Studio Code](#visual-studio-code)
-     * [Arduino IDE (deprecated)](#arduino-ide-(deprecated))
+     * [Arduino IDE (deprecated)](#arduino-ide-deprecated)
    * [Documentation](#documentation)
 <!--te-->
 
@@ -121,7 +121,7 @@ Automated tests are built with cmake by configuring for the current host:
 PF-build is recommended for users without development experience. Download or clone the repository,
 then run PF-build and simply follow the instructions:
 
-    cd Prusa-Firmware
+    cd Prusa-Firmware/master
     ./PF-build.sh
 
 PF-build currently assumes a Debian/Ubuntu (or derivative) distribution.
