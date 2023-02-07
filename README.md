@@ -29,8 +29,8 @@ There are three ways to build Prusa-Firmware on Linux: using [CMake](#cmake), [V
 The workflow should be pretty straightforward for anyone with development experience. After installing git and a recent version of python 3 all you have to do is:
 
     # clone the repository
-    git clone https://github.com/prusa3d/Prusa-Firmware
-    cd Prusa-Firmware
+    git clone https://github.com/prusa3d/Prusa-Firmware Prusa-Firmware/master
+    cd Prusa-Firmware/master
 
     # automatically setup dependencies
     ./utils/bootstrap.py
@@ -100,8 +100,8 @@ When building the following targets are available:
 Automated tests are built with cmake by configuring for the current host:
 
     # clone the repository
-    git clone https://github.com/prusa3d/Prusa-Firmware
-    cd Prusa-Firmware
+    git clone https://github.com/prusa3d/Prusa-Firmware Prusa-Firmware/master
+    cd Prusa-Firmware/master
 
     # automatically setup dependencies
     ./utils/bootstrap.py
@@ -210,8 +210,6 @@ Run "Arduino IDE", then
 # Documentation
 run [doxygen](http://www.doxygen.nl/) in `Firmware` folder
 or visit https://prusa3d.github.io/Prusa-Firmware-Doc for doxygen generated output
-# Documentation
-Visit https://prusa3d.github.io/Prusa-Firmware-Doc for doxygen generated output
 
 # Advanced
 This section is for advanced users.
