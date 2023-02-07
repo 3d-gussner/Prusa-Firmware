@@ -134,7 +134,7 @@ PF-build currently assumes a Debian/Ubuntu (or derivative) distribution.
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [CMake Tools plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
 * [Python](https://www.python.org/)
-* git for Linux and MAC or
+* `git` for Linux and MAC or
 * [Git Bash for Windows](https://git-scm.com/downloads)
 
 #### First time setup
