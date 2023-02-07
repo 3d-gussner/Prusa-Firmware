@@ -222,23 +222,26 @@ This section is for advanced users.
  <!--te-->
 
 ## How-to prepare a Pull Request
-Before submiting a Pull Request we would like you to check your PR. PRs containing the steps below are easier to review and have a better chance to be merged.
+Before submiting a Pull Request we would like you to check your PR.
+
+PRs containing the steps below are easier to review and have a better chance to be merged.
 
 PRs saving resources are more than welcome!
+
 PRs consuming additional resources should have "strong" arguments to convince the developers as resources are a rare thing on an Atmel ATMEGA 2560.  
 
--[ ] Short description of PR
--[ ] Detailed description of PR
- -[ ] Bug-fix, enhancement of existing feature new feature
-  -[ ] Links to issues
--[ ] Test scenario
- -[ ] Describe old behavior
- -[ ] Describe new behavior or expected results
--[ ] Tested
- -[ ] on MK404 simulator
- -[ ] on real printer (type)
-  -[ ] with/without MMU
--[ ] Resource usage, how many flash and RAM are used/saved
+- [ ] Short description of PR
+- [ ] Detailed description of PR
+  - [ ] Bug-fix, enhancement of existing feature new feature
+    - [ ] Links to issues
+- [ ] Test scenario
+  - [ ] Describe old behavior
+  - [ ] Describe new behavior and expected results
+- [ ] Tested
+  - [ ] on MK404 simulator
+  - [ ] on real printer (type)
+  - [ ] with/without MMU
+- [ ] Resource usage, how many flash and RAM are used/saved
 
 ## MK404 Simulator
 Please visit [MK404 Sim](https://github.com/vintagepc/MK404) for more information.
@@ -268,10 +271,13 @@ You gonna need `sudo apt install libelf-dev gcc gcc-avr libglew-dev freeglut3-de
 
 #### Run MK404
 Please read the [MK404 Wiki](https://github.com/vintagepc/MK404/wiki)
+
 You can use the [online configuration tool](https://vintagepc.github.io/MK404/MK404Exec.html) to prepare the command.
+
 Please select/fill in at least following settings:
 - `Printer model` (default is MK3S without MMU2)
 - `Firmware file` including the path to your build hex file
+
 Recommended settings:
 - `Route printer UART to a PTY instead of stdio` to connect with a terminal like PrusaLink or OctoPrint to the MK404 sim. Use `/tmp/sim-avr-uart0` to connect.
 - `Enable (experimental) scripting terminal` very useful if you want test things, see [details](https://github.com/vintagepc/MK404/wiki/Scripting)
@@ -288,8 +294,14 @@ To run a custom or development MMU2 firmware add `-F <path/mmu2-firmware-filname
 ##### Examples
 Run Prusa MK3S with latest self build firmware in M404
 `./MK404 Prusa_MK3S -f ~/Prusa-Firmware/master/build/build_gen/MK3S-EINSy10a/MK3S-EINSy10a_MULTILANG.hex -s --terminal`
+
 or
-`./MK404 Prusa_MK3S -f ~/Prusa-Firmware/master/build/FW3.13.0+6914-MK3S-EINSy10a_MULTILANG.hex -s --terminal` where `3.13.0+6914` and paths will differ depending when/where you build the firmware.
+
+`./MK404 Prusa_MK3S -f ~/Prusa-Firmware/master/build/FW3.13.0+6914-MK3S-EINSy10a_MULTILANG.hex -s --terminal`
+
+where `3.13.0+6914` and paths will differ depending when/where you build the firmware.
 
 Run Prusa MK3S with custom MMU2 firmware
-`./MK404 Prusa_MK3SMMU2 -f ~/Prusa-Firmware/master/build/build_gen/MK3S-EINSy10a/MK3S-EINSy10a_MULTILANG.hex -s --terminal -F ~/Prusa-Firmware-MMU/main/build/release/MMU_2.0.0+764.hex` where `2.0.0+764` and paths will differ depending when/where you build MMU firmware.
+`./MK404 Prusa_MK3SMMU2 -f ~/Prusa-Firmware/master/build/build_gen/MK3S-EINSy10a/MK3S-EINSy10a_MULTILANG.hex -s --terminal -F ~/Prusa-Firmware-MMU/main/build/release/MMU_2.0.0+764.hex`
+
+where `2.0.0+764` and paths will differ depending when/where you build MMU firmware.
