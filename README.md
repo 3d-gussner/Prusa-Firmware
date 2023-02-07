@@ -8,6 +8,18 @@ The firmware for the Original Prusa i3 printers is proudly based on [Marlin 1.0.
 
 This repository contains _development material only!_
 
+# Table of contents
+
+<!--ts-->
+   * Build
+     * [Linux build](#linux)
+       * [Cmake](#cmake)
+       * [PF-build](#pf-build)
+     * [Windows, Linux and Mac](#windows,-linux-and-mac)
+       * [Visual Studio Code](#visual-studio-code)
+     * [Arduino IDE (deprecated)](#arduino-ide-(deprecated))
+   * [Documentation](#documentation)
+<!--te-->
 
 # Build
 ## Linux
@@ -115,22 +127,23 @@ then run PF-build and simply follow the instructions:
 PF-build currently assumes a Debian/Ubuntu (or derivative) distribution.
 
 
-## Windows
-### Visual Studio Code (VSCode)
+## Windows, Linux and Mac
+### Visual Studio Code
 #### Prerequisites
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [CMake Tools plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
 * [Python](https://www.python.org/)
-* [Git Bash](https://git-scm.com/downloads)
+* git for Linux and MAC or
+* [Git Bash for Windows](https://git-scm.com/downloads)
 
 #### First time setup
 
 Start by cloning the Prusa-Firmware repository
 
-    git clone https://github.com/prusa3d/Prusa-Firmware
+    git clone https://github.com/prusa3d/Prusa-Firmware Prusa-Firmware/master
 
-Open the `Prusa-Firmware` folder in VScode.
+Open the `Prusa-Firmware/master` folder in VScode.
 
 Open a new terminal in VScode (Terminal→New Terminal) and run
 
@@ -149,7 +162,7 @@ After updating the kit, you may need to reload VScode.
 
 To start building a firmware, click the CMake Tools plugin icon on the far left side. You will get a very large list of targets to build. Find the firmware you'd like to build (like `MK3S-EINSy10a_ENGLISH`) and select the small icon which shows "Build" when hovered over.
 
-The built .hex file can then be found in folder `Prusa-Firmware/build`
+The built .hex file can then be found in folder `Prusa-Firmware/master/build`
 
 
 ## Arduino IDE (deprecated)
@@ -194,3 +207,7 @@ Run "Arduino IDE", then
 
 - Run the compilation: Sketch -> Verify/Compile
 - Upload the result code into the connected printer: Sketch -> Upload
+
+# Documentation
+run [doxygen](http://www.doxygen.nl/) in `Firmware` folder
+or visit https://prusa3d.github.io/Prusa-Firmware-Doc for doxygen generated output
