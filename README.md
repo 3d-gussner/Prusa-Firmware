@@ -16,6 +16,6 @@ This repository contains _development material only!_
 <!--te-->
 
 # Build
-Visit https://github.com/prusa3d/Prusa-Firmware/BUILD.md 
+Visit https://github.com/3d-gussner/Prusa-Firmware/BUILD.md 
 # Documentation
 Visit https://prusa3d.github.io/Prusa-Firmware-Doc for doxygen generated output
