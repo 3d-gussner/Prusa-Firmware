@@ -1,6 +1,6 @@
 # Host debugging tools for Prusa MK3 firmware
 
-Most of the tools require python 3 and assume an Unix environment.
+Most of the tools require python 3 and assume an Unix/Linux environment.
 
 
 ## EEPROM analysis
@@ -63,7 +63,7 @@ Extract a crash dump from an external flash image and output the same format pro
 Set the required TTY flags on the specified port to avoid reset-on-connect for *subsequent* requests (issuing this command might still cause the printer to reset).
 
 
-## Temperature analysis
+## Thermal model analysis
 
 ### ``tml_decode``
 

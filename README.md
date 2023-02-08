@@ -208,8 +208,11 @@ Run "Arduino IDE", then
 - Upload the result code into the connected printer: Sketch -> Upload
 
 # Documentation
-run [doxygen](http://www.doxygen.nl/) in `Firmware` folder
-or visit https://prusa3d.github.io/Prusa-Firmware-Doc for doxygen generated output
+Run [doxygen](http://www.doxygen.nl/) in `Firmware` folder.
+Visit for doxygen generated output
+- [EEPROM Table](https://prusa3d.github.io/Prusa-Firmware-Doc/group__eeprom__table.html)
+- [G-Code List](https://prusa3d.github.io/Prusa-Firmware-Doc/group__GCodes.html)
+- [XFLASH Layout](https://prusa3d.github.io/Prusa-Firmware-Doc/group__xflash__layout.html)
 
 # Advanced
 This section is for advanced users.
@@ -217,6 +220,8 @@ This section is for advanced users.
 <!--ts-->
    * [How-to prepare a Pull Request](#how-to-prepare-a-pull-request)
    * [MK404 simulator](#mk404-simulator)
+   * [Tools](#tools)
+   * [Translations](#translations)
  <!--te-->
 
 ## How-to prepare a Pull Request
@@ -230,16 +235,21 @@ PRs consuming additional resources should have "strong" arguments to convince th
 
 - [ ] Short description of PR
 - [ ] Detailed description of PR
-  - [ ] Bug-fix, enhancement of existing feature new feature
+  - [ ] Bug-fix, enhancement of existing feature, new feature
     - [ ] Links to issues
 - [ ] Test scenario
   - [ ] Describe old behavior
-  - [ ] Describe new behavior and expected results
+  - [ ] Describe new behavior
+    - [ ] Expected results
 - [ ] Tested
   - [ ] on MK404 simulator
+    - [ ] MK3/S
+      - [ ] with MMU
+    - [ ] MK2.5/S
+      - [ ] with MMU
   - [ ] on real printer (type)
-  - [ ] with/without MMU
-- [ ] Resource usage, how many flash and RAM are used/saved
+    - [ ] with/without MMU
+- [ ] Resource usage, how many additional flash and RAM are used or saved
 
 ## MK404 Simulator
 Please visit [MK404 Sim](https://github.com/vintagepc/MK404) for more information.
@@ -303,3 +313,80 @@ Run Prusa MK3S with custom MMU2 firmware
 `./MK404 Prusa_MK3SMMU2 -f ~/Prusa-Firmware/master/build/build_gen/MK3S-EINSy10a/MK3S-EINSy10a_MULTILANG.hex -s --terminal -F ~/Prusa-Firmware-MMU/main/build/release/MMU_2.0.0+764.hex`
 
 where `2.0.0+764` and paths will differ depending when/where you build MMU firmware.
+
+## Tools
+We have several tools available in the `/tools` folder
+
+### Dump tools
+Please read the [Dump tools readme](https://github.com/prusa3d/Prusa-Firmware/blob/MK3/tools/README.md)
+
+### Thermal model analysis
+Please read the [Thermal model analysis readme](https://github.com/prusa3d/Prusa-Firmware/tree/MK3/tools#thermal-model-analysis)
+
+## Translations
+Please read the [Translations readme](https://github.com/prusa3d/Prusa-Firmware/blob/MK3/lang/README.md) for more details
+
+### Translation pull requests
+Ensure that the Traslation releated pull request compiles without any issues and has been tested.
+
+The translation pull request should contain next to the [regular checks](#How-to prepare a Pull Request) also
+- [ ] Verified LCD output
+- [ ] All multiple languages translations tested and reviewed
+
+#### Translation tips and tricks
+- Please use diacritics in the `.po` files.
+
+  - At this moment we support ONLY Germanic diacritcs `äÄöÖüÜß` being show on display. Other language diacritics will be automatically replaced with `aA-zZ` characters.
+
+- Review your changes
+  - Sometimes it makes sense to split/shorten long words to fit messages on one screen instead of having one word on second page.
+  
+    - Original translation is split on LCD two screen     
+```
+[I]: MSG_BED_SKEW_OFFSET_DETECTION_FAILED_FRONT_BOTH_FAR c=20 r=6
+ source text:
+      ₀₁₂₃₄₅₆₇₈₉₀₁₂₃₄₅₆₇₈₉
+   1 |XYZ calibration     |
+   2 |failed. Front       |
+   3 |calibration points  |
+   4 |not reachable.      |
+ translated text:
+      ₀₁₂₃₄₅₆₇₈₉₀₁₂₃₄₅₆₇₈₉
+   1 |XYZ-Kalibrierung    |
+   2 |fehlgeschlagen.     |
+   3 |Vordere             |
+   4 |Kalibrirungsunkte   |
+   5 |nicht erreichbar.   |
+```
+    - Modified translation fits on one LCD screen
+```
+[I]: MSG_BED_SKEW_OFFSET_DETECTION_FAILED_FRONT_BOTH_FAR c=20 r=6
+ source text:
+      ₀₁₂₃₄₅₆₇₈₉₀₁₂₃₄₅₆₇₈₉
+   1 |XYZ calibration     |
+   2 |failed. Front       |
+   3 |calibration points  |
+   4 |not reachable.      |
+ translated text:
+      ₀₁₂₃₄₅₆₇₈₉₀₁₂₃₄₅₆₇₈₉
+   1 |XYZ-Kalibrierung    |
+   2 |fehlgeschlagen.     |
+   3 |Vordere Kal.-Punkte |
+   4 |nicht erreichbar.   |
+```
+
+##### How-to verify the LCD output
+- Build the multi-language firmware
+  - `*_lang.map` files can be found in the build folder `build/build_gen/<Printer tpy>/lang/<Printer tpye>_lang.map`
+- Change to `/lang` folder
+- Execute `./lang-check.py --map <path and filename of _lang.map> po/Firmware_<language>.po`
+  - Additonal arguments
+    - `--no-suggest` removes warnings like same as original
+    - `--information` outputs ALL messages as shown on LCD screen
+- All `[W]`arnings and `[E]`rrors need to be solved
+
+Example:
+- Run German check for suggestions, warnings and errors `./lang-check.py --map ../build/build_gen/MK3S-EINSy10a/lang/MK3S-EINSy10a_lang.map po/Firmware_de.po`
+
+
+- Output German translation in a text file for review. `./lang-check.py --map ../build/build_gen/MK3S-EINSy10a/lang/MK3S-EINSy10a_lang.map po/Firmware_de.po --no-suggest --information >~/20230208_German_translation.txt`
