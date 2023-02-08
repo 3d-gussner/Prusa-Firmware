@@ -327,7 +327,7 @@ Please read the [Thermal model analysis readme](https://github.com/prusa3d/Prusa
 Please read the [Translations readme](https://github.com/prusa3d/Prusa-Firmware/blob/MK3/lang/README.md) for more details
 
 ### Translation pull requests
-Ensure that the Traslation releated pull request compiles without any issues and has been tested.
+Ensure that the Traslation releated pull request compiles without any issues and have been tested.
 
 The translation pull request should contain next to the [regular checks](#How-to prepare a Pull Request) also
 - [ ] Verified LCD output
@@ -341,7 +341,7 @@ The translation pull request should contain next to the [regular checks](#How-to
 - Review your changes
   - Sometimes it makes sense to split/shorten long words to fit messages on one screen instead of having one word on second page.
   
-    - Original translation is split on LCD two screen     
+Original translation is split on LCD two screen     
 ```
 [I]: MSG_BED_SKEW_OFFSET_DETECTION_FAILED_FRONT_BOTH_FAR c=20 r=6
  source text:
@@ -358,7 +358,9 @@ The translation pull request should contain next to the [regular checks](#How-to
    4 |Kalibrirungsunkte   |
    5 |nicht erreichbar.   |
 ```
-    - Modified translation fits on one LCD screen
+
+Modified translation fits on one LCD screen
+
 ```
 [I]: MSG_BED_SKEW_OFFSET_DETECTION_FAILED_FRONT_BOTH_FAR c=20 r=6
  source text:
@@ -377,7 +379,7 @@ The translation pull request should contain next to the [regular checks](#How-to
 
 ##### How-to verify the LCD output
 - Build the multi-language firmware
-  - `*_lang.map` files can be found in the build folder `build/build_gen/<Printer tpy>/lang/<Printer tpye>_lang.map`
+  - `*_lang.map` files can be found in the build folder `build/build_gen/<Printer type>/lang/<Printer tpye>_lang.map`
 - Change to `/lang` folder
 - Execute `./lang-check.py --map <path and filename of _lang.map> po/Firmware_<language>.po`
   - Additonal arguments
