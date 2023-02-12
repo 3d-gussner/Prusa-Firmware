@@ -1806,7 +1806,7 @@ msgstr "THERMAL ANOMALY"
 #. MSG_TM_CAL c=20 r=4
 #: ../../Firmware/ultralcd.cpp:4054
 msgid "Thermal model cal. takes approx. 12 mins. See\nprusa.io/tm-cal"
-msgstr "Výpočet termálny modelu trvá asi 12 min. Pozri\nprusa.io/tm-cal"
+msgstr "Výpočet termálneho modelu trvá asi 12 min. Pozri\nprusa.io/tm-cal"
 
 #. MSG_TM_NOT_CAL c=20 r=4
 #: ../../Firmware/Marlin_main.cpp:1527 ../../Firmware/Marlin_main.cpp:3404
