@@ -338,6 +338,7 @@ void lcdui_print_temp(char type, int val_current, int val_target)
 }
 
 // Print Z-coordinate (8 chars total)
+#ifndef NEW_STATUS_SCREEN
 void lcdui_print_Z_coord(void)
 {
     if (custom_message_type == CustomMsg::MeshBedLeveling)
@@ -345,7 +346,26 @@ void lcdui_print_Z_coord(void)
     else
 		lcd_printf_P(_N("Z%6.2f%c"), current_position[Z_AXIS], axis_known_position[Z_AXIS]?' ':'?');
 }
+#else //NEW_STATUS_SCREEN
+void lcdui_print_Z_coord(void)
+{
+    if (custom_message_type == CustomMsg::MeshBedLeveling)
+        lcd_puts_P(_N(" Z  --- "));
+    else if (axis_known_position[Z_AXIS] == false)
+		lcd_printf_P(_N(" Z%5.2f%c"), current_position[Z_AXIS], axis_known_position[Z_AXIS]?' ':'?');
+    else
+        lcd_printf_P(_N(" Z%6.2f"), current_position[Z_AXIS]);
+}
+#endif //NOT NEW_STATUS_SCREEN
 
+#ifdef NEW_STATUS_SCREEN
+void lcdui_print_pause_crash_coord(void)
+{
+    //01234567890123456789
+    //000.xx 000.yy 000.zz
+    lcd_printf_P(_N("%6.2f %6.2f %6.2f"),current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS]);
+}
+#endif //NEW_STATUS_SCREEN
 #ifdef PLANNER_DIAGNOSTICS
 // Print planner diagnostics (8 chars total)
 void lcdui_print_planner_diag(void)
@@ -369,16 +389,24 @@ void lcdui_print_planner_diag(void)
 }
 #endif // PLANNER_DIAGNOSTICS
 
+#ifndef NEW_STATUS_SCREEN
 // Print feedrate (8 chars total)
 void lcdui_print_feedrate(void)
 {
 	int chars = lcd_printf_P(_N("%c%3d%%"), LCD_STR_FEEDRATE[0], feedmultiply);
 	lcd_space(8 - chars);
 }
-
-// Print percent done in form "USB---%", " SD---%", "   ---%" (7 chars total)
+#else //NEW_STATUS_SCREEN
+// Print feedrate (5 chars total)
+void lcdui_print_feedrate(void)
+{
+    lcd_printf_P(_N("%c%3d%%"), LCD_STR_FEEDRATE[0], feedmultiply);
+}
+#endif //NOT NEW_STATUS_SCREEN
 void lcdui_print_percent_done(void)
 {
+#ifndef NEW_STATUS_SCREEN
+// Print percent done in form "USB---%", " SD---%", "   ---%" (7 chars total)
 	const char* src = usb_timer.running()?_N("USB"):(IS_SD_PRINTING?_N(" SD"):_N("   "));
 	char per[4];
 	bool num = IS_SD_PRINTING || (printer_active() && (print_percent_done_normal != PRINT_PERCENT_DONE_INIT));
@@ -395,9 +423,36 @@ void lcdui_print_percent_done(void)
 			return; //do not also print the percentage
 		}
 	}
-	sprintf_P(per, num?_N("%3d"):_N("---"), calc_percent_done());
-	lcd_printf_P(_N("%3S%3s%%"), src, per);
+#else //NEW_STATUS_SCREEN
+// Print percent done in form "HO---%", " SD---%", "   ---%" (6 chars total)
+	const char* src = usb_timer.running()?_N("HO"):(IS_SD_PRINTING?_N("SD"):_N("  "));
+	char per[4];
+	bool num = IS_SD_PRINTING || (printer_active() && (print_percent_done_normal != PRINT_PERCENT_DONE_INIT));
+#endif //NOT NEW_STATUS_SCREEN
+	sprintf_P(per, num?_N("%2d"):_N("---"), calc_percent_done());
+	lcd_printf_P(_N("%2S%3s%%"), src, per);
 }
+
+#ifdef NEW_STATUS_SCREEN
+void lcdui_print_sheet(void)
+{
+	const int8_t sheetNR = eeprom_read_byte(&(EEPROM_Sheets_base->active_sheet));
+	char sheet[8];
+	eeprom_read_block(sheet, EEPROM_Sheets_base->s[sheetNR].name, 7);
+	sheet[7] = '\0';
+	lcd_printf_P(PSTR("%-7s"),sheet);
+}
+#endif //NEW_STATUS_SCREEN
+
+#ifdef NEW_STATUS_SCREEN
+void lcdui_print_FS(void)
+{
+if (fsensor.isEnabled()) 
+    lcd_printf_P(PSTR("FS%d"),fsensor.getFilamentPresent());
+else
+    lcd_printf_P(PSTR("FSx"));
+}
+#endif //NEW_STATUS_SCREEN
 
 // Print extruder status (5 chars total)
 // Scenario 1: "F?"
@@ -417,6 +472,8 @@ void lcdui_print_percent_done(void)
 //              Filament [nr1.] was loaded, but [nr2.] is currently being loaded via tool change
 // Scenario 6: "?>?"
 //              This scenario should not be possible and indicates a bug in the firmware
+
+#ifndef NEW_STATUS_SCREEN
 uint8_t lcdui_print_extruder(void) {
     uint8_t chars = 1;
     lcd_space(1);
@@ -432,6 +489,23 @@ uint8_t lcdui_print_extruder(void) {
     }
     return chars;
 }
+#else //NEW_STATUS_SCREEN
+uint8_t lcdui_print_extruder(void) {
+    uint8_t chars = 1;
+    lcd_space(1);
+    if (MMU2::mmu2.get_current_tool() == MMU2::mmu2.get_tool_change_tool()) {
+        lcd_putc('F');
+        lcd_putc(MMU2::mmu2.get_current_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? '?' : MMU2::mmu2.get_current_tool() + '1');
+        chars += 2;
+    } else {
+        lcd_putc(MMU2::mmu2.get_current_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? '?' : MMU2::mmu2.get_current_tool() + '1');
+        lcd_putc('>');
+        lcd_putc(MMU2::mmu2.get_tool_change_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? '?' : MMU2::mmu2.get_tool_change_tool() + '1');
+        chars += 3;
+    }
+    return chars;
+}
+#endif //NOT NEW_STATUS_SCREEN
 
 // Print farm number (5 chars total)
 static void lcdui_print_farm(void)
@@ -616,6 +690,7 @@ void lcdui_print_status_line(void) {
     }
 }
 
+#ifndef NEW_STATUS_SCREEN
 //! @brief Show Status Screen
 //!
 //! @code{.unparsed}
@@ -689,7 +764,130 @@ void lcdui_print_status_screen(void)
 #endif //DEBUG_DISABLE_LCD_STATUS_LINE
 
 }
+#else //NEW_STATUS_SCREEN
+//! @brief Show Status Screen
+//!
+//! @code{.unparsed}
+//! |01234567890123456789|  // Status screen row 1
+//! |n000/000d  b000/000d|  // Hotend actual/target , Bed actual/target temperatures
+//! ----------------------  // Status screen row 2
+//!
+//! |f100% ss100% t--:--R|  // Flow rate %, SD/HO100%, thh:mmR/C/?
+//! ----------------------  // Status screen row 3 normal idle
+//!
+//! |FS? Smooth1  Z000.00|  // left Filament Sensor status, Sheet <:6+nr:1>, right Z height idle
+//! ----------------------  // Status screen row 3 crash
+//! |000.00 000.00 000.00|  // Crash position or power panic xyz positions
+//! ----------------------  // Status screen row 3 MMU2 operational
+//! |FS? FI? mmu2 Z000.00|  // FS status, FINDA status, MMU2SR status, Z height
+//! ______________________
+//! |FS1 FI1 T#   Z  2.15|  With MMU2SR Extruder Filament sensor and FINDA triggered
+//! |FS0 FI1 T#># Z000.00|  With MMU2SR change from Tool a to b and FIND triggered
+//! |FS0 FI0 T#!  215/100|  With MMU2SR Error at Tool # hotend/bed temp
+//!
+//! ----------------------  // Status screen row 4 Status line
+//! |Status line.........|
+//!
+//! FS[0/1/X/E]                         = Extruder Filament Sensor
+//!                                       not triggered
+//!                                       triggered
+//!                                       disabled
+//!                                       Error (IR 0.4)
+//!
+//! FI[0/1/E]                           = MMU2 FINDA Sensor
+//!                                       not triggered
+//!                                       triggered
+//!                                       Error
+//!
+//! mmu2[Mf0-5|Mn0-5|Mu0-5|Me0-5|Mc0-5|T] = MMU2 
+//!                                       MMU2 ok
+//!                                       MMU2 Mf load tool to FINDA
+//!                                       MMU2 Mn load tool to nozzle
+//!                                       MMU2 Mu unload tool
+//!                                       MMU2 Me eject tool
+//!                                       MMU2 Mc cut 
+//!                                       MMU2 tool
+//! @endcode
+void lcdui_print_status_screen(void)
+{
 
+    lcd_set_cursor(0, 0); //line 0
+
+    //Print the hotend temperature (9 chars total)
+	lcdui_print_temp(LCD_STR_THERMOMETER[0], (int)(degHotend(0) + 0.5), (int)(degTargetHotend(0) + 0.5));
+
+	lcd_space(2); //2 spaces
+
+	//Print the Bed temperature (9 chars total)
+	lcdui_print_temp(LCD_STR_BEDTEMP[0], (int)(degBed() + 0.5), (int)(degTargetBed() + 0.5));
+
+    lcd_set_cursor(0, 1); //line 1
+
+#ifdef PLANNER_DIAGNOSTICS
+	//Print planner diagnostics (8 chars)
+	lcdui_print_planner_diag();
+#else // PLANNER_DIAGNOSTICS
+    //Print Feedrate (8 chars)
+	lcdui_print_feedrate();
+#endif // PLANNER_DIAGNOSTICS
+
+	lcd_space(1); //1 space
+
+	//Print SD status (7 chars)
+	lcdui_print_percent_done();
+
+	lcd_space(1); //1 space
+
+#ifdef CMD_DIAGNOSTICS
+    //Print cmd queue diagnostics (8chars)
+	lcdui_print_cmd_diag();
+#else
+    //Print time (8chars)
+	lcdui_print_time();
+#endif //CMD_DIAGNOSTICS
+
+	lcd_set_cursor(0, 2); //line 2
+if (isPrintPaused)
+{
+    lcdui_print_pause_crash_coord();
+}
+else
+{
+    //Print Fil sensor state 
+    lcdui_print_FS();
+
+    lcd_space(1); //1 space
+
+    if (MMU2::mmu2.Enabled()) {
+        //Print FINDA status
+        lcd_printf_P(PSTR("FI%d "), MMU2::mmu2.FindaDetectsFilament());
+        // Print extruder status (5 chars)
+        lcdui_print_extruder();
+    } else if (farm_mode) {
+        // Print farm number (5 chars)
+        lcdui_print_farm();
+    } else {
+#ifndef NEW_STATUS_SCREEN
+        lcd_space(5); // 5 spaces
+#else //NEW_STATUS_SCREEN
+        lcdui_print_sheet();
+#endif //NOT NEW_STATUS_SCREEN
+    }
+    lcd_space(1); //1 spaces
+
+    //Print Z-coordinate (8 chars total)
+	lcdui_print_Z_coord();
+
+}
+    lcd_set_cursor(0, 3); //line 3
+
+#ifndef DEBUG_DISABLE_LCD_STATUS_LINE
+	lcdui_print_status_line();
+#endif //DEBUG_DISABLE_LCD_STATUS_LINE
+
+}
+
+#endif //OLD_STATUS_SCREEN
 // Main status screen. It's up to the implementation specific part to show what is needed. As this is very display dependent
 void lcd_status_screen()                          // NOT static due to using inside "Marlin_main" module ("manage_inactivity()")
 {
