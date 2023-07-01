@@ -71,6 +71,7 @@ void uvlo_() {
         saved_bed_temperature = target_temperature_bed;
         saved_extruder_temperature = target_temperature[active_extruder];
         saved_extruder_relative_mode = axis_relative_modes & E_AXIS_MASK;
+        saved_fan_speed = fanSpeed;
     }
 
     // Stop all heaters before continuing
