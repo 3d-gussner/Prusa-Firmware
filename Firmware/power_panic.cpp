@@ -163,7 +163,7 @@ void uvlo_() {
     eeprom_update_word((uint16_t*)EEPROM_UVLO_FEEDMULTIPLY, feedmultiply);
     eeprom_update_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND, saved_extruder_temperature);
     eeprom_update_byte((uint8_t*)EEPROM_UVLO_TARGET_BED, saved_bed_temperature);
-    eeprom_update_byte((uint8_t*)EEPROM_UVLO_FAN_SPEED, fanSpeed);
+    eeprom_update_byte((uint8_t*)EEPROM_UVLO_FAN_SPEED, saved_fan_speed);
     eeprom_update_float((float*)(EEPROM_EXTRUDER_MULTIPLIER_0), extruder_multiplier[0]);
     eeprom_update_word((uint16_t*)(EEPROM_EXTRUDEMULTIPLY), (uint16_t)extrudemultiply);
 
