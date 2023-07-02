@@ -105,7 +105,7 @@ void uvlo_() {
     if(mbl_was_active) {
         // Mesh bed leveling was being actively applied to the Z-position. Revert the
         // mesh bed leveling offset value.
-        logical_z -= mbl.get_z(st_get_position_mm(X_AXIS), st_get_position_mm(Y_AXIS));
+        logical_z -= mbl.get_z(saved_pos[X_AXIS], saved_pos[Y_AXIS]);
     }
     eeprom_update_float((float*)EEPROM_UVLO_CURRENT_POSITION_Z, logical_z);
 
