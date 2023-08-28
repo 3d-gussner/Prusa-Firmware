@@ -287,52 +287,6 @@ function(git_local_changes _var)
     endif()
 endfunction()
 
-function(git_get_commit_timestamp _var hash)
-  execute_process(
-    COMMAND "${GIT_EXECUTABLE}" show -s "--format=%ct" "${hash}"
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-    RESULT_VARIABLE res
-    OUTPUT_VARIABLE out
-    ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-  if(res EQUAL 0)
-    set(${_var}
-        "${out}"
-        PARENT_SCOPE
-        )
-  else()
-    set(${_var}
-        "0"
-        PARENT_SCOPE
-        )
-  endif()
-
-endfunction()
-
-function(git_head_commit_timestamp _var)
-  if(NOT GIT_FOUND)
-    find_package(Git QUIET)
-  endif()
-  get_git_head_revision(refspec hash)
-  if(NOT GIT_FOUND)
-    set(${_var}
-        "GIT-NOTFOUND"
-        PARENT_SCOPE
-        )
-    return()
-  endif()
-  if(NOT hash)
-    set(${_var}
-        "HEAD-HASH-NOTFOUND"
-        PARENT_SCOPE
-        )
-    return()
-  endif()
-  git_get_commit_timestamp(timestamp ${hash})
-  set(${_var}
-      "${timestamp}"
-      PARENT_SCOPE
-      )
 function(git_head_commit_data _var _format)
     if(NOT GIT_FOUND)
         find_package(Git QUIET)
@@ -414,4 +368,52 @@ function(git_get_repository _var)
         "Unknown"
         PARENT_SCOPE)
     endif()
+endfunction()
+
+function(git_get_commit_timestamp _var hash)
+  execute_process(
+    COMMAND "${GIT_EXECUTABLE}" show -s "--format=%ct" "${hash}"
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+    RESULT_VARIABLE res
+    OUTPUT_VARIABLE out
+    ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+  if(res EQUAL 0)
+    set(${_var}
+        "${out}"
+        PARENT_SCOPE
+        )
+  else()
+    set(${_var}
+        "0"
+        PARENT_SCOPE
+        )
+  endif()
+
+endfunction()
+
+function(git_head_commit_timestamp _var)
+  if(NOT GIT_FOUND)
+    find_package(Git QUIET)
+  endif()
+  get_git_head_revision(refspec hash)
+  if(NOT GIT_FOUND)
+    set(${_var}
+        "GIT-NOTFOUND"
+        PARENT_SCOPE
+        )
+    return()
+  endif()
+  if(NOT hash)
+    set(${_var}
+        "HEAD-HASH-NOTFOUND"
+        PARENT_SCOPE
+        )
+    return()
+  endif()
+  git_get_commit_timestamp(timestamp ${hash})
+  set(${_var}
+      "${timestamp}"
+      PARENT_SCOPE
+      )
 endfunction()

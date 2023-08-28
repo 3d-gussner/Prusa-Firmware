@@ -2,11 +2,19 @@
 # This file is responsible for setting the following variables:
 #
 # ~~~
+# PROJECT_VERSION (3.13.1)
+# PROJECT_VERSION_FULL (3.13.1-RC1)
+# PROJECT_VERSION_SUFFIX (-R1C)
+# PROJECT_VERSION_SUFFIX_SHORT (+1035)
+# PROJECT_VERSION_TIMESTAMP (unix timestamp)
 # PROJECT_VERSION_MAJOR (3)
 # PROJECT_VERSION_MINOR (13)
 # PROJECT_VERSION_REV (1)
-# PROJECT_VERSION (3.13.1)
+# PROJECT_VERSION_FLAVOR (RC)
+# PROJECT_VERSION_FLAVERSION (1)
+# PROJECT_VERSION (3.13.1-RC1)
 # FW_COMMIT_DSC ("v3.13.1-deadbeef")
+# FW_COMMIT_NR (7553)
 # FW_COMMIT_HASH (deadbeef)
 # FW_COMMIT_DATE (1665051856)
 #
@@ -93,6 +101,10 @@ function(resolve_version_variables)
       "${FW_COMMIT_DATE}"
       PARENT_SCOPE
       )
+  set(FW_REPOSITORY
+      "${FW_REPOSITORY}"
+      PARENT_SCOPE
+      )
 
   # PROJECT_VERSION_TIMESTAMP
   if(NOT PROJECT_VERSION_TIMESTAMP)
@@ -103,8 +115,4 @@ function(resolve_version_variables)
         )
   endif()
 
-  set(FW_REPOSITORY
-      "${FW_REPOSITORY}"
-      PARENT_SCOPE
-      )
 endfunction()
