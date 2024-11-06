@@ -55,7 +55,7 @@ uint8_t SpoolJoin::nextSlot()
     SERIAL_ECHOPGM("SpoolJoin: ");
     SERIAL_ECHO((int)currentMMUSlot);
 
-    if (currentMMUSlot >= 4) currentMMUSlot = 0;
+    if (currentMMUSlot >= MMU_FILAMENT_COUNT-1 ) currentMMUSlot = 0;
     else currentMMUSlot++;
 
     SERIAL_ECHOPGM(" -> ");

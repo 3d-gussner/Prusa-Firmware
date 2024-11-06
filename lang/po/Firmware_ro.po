@@ -1735,10 +1735,10 @@ msgstr "Redenumește"
 #: ../../Firmware/mmu2/errors_list.h:281 ../../Firmware/mmu2/errors_list.h:335
 msgid ""
 "Requested filament tool is not available on this hardware. Check the G-code "
-"for tool index out of range (T0-T4)."
+"for tool index out of range (T0-T12)."
 msgstr ""
 "Fil. solicitat nu este disponibil pe acest hardware. Verifică G-codul dacă "
-"folosește filam. în afara intervalului (T0-T4)."
+"folosește filam. în afara intervalului (T0-T12)."
 
 #. MSG_RESET c=14
 #: ../../Firmware/messages.cpp:90 ../../Firmware/ultralcd.cpp:2730

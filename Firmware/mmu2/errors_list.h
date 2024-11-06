@@ -278,7 +278,7 @@ static const char MSG_DESC_TMC[] PROGMEM_I1 = ISTR("More details online."); ////
 static const char MSG_DESC_MMU_NOT_RESPONDING[] PROGMEM_I1 = ISTR("MMU not responding. Check the wiring and connectors."); ////MSG_DESC_MMU_NOT_RESPONDING c=20 r=4
 static const char MSG_DESC_COMMUNICATION_ERROR[] PROGMEM_I1 = ISTR("MMU not responding correctly. Check the wiring and connectors."); ////MSG_DESC_COMMUNICATION_ERROR c=20 r=4
 static const char MSG_DESC_FILAMENT_ALREADY_LOADED[] PROGMEM_I1 = ISTR("Cannot perform the action, filament is already loaded. Unload it first."); ////MSG_DESC_FILAMENT_ALREADY_LOADED c=20 r=8
-static const char MSG_DESC_INVALID_TOOL[] PROGMEM_I1 = ISTR("Requested filament tool is not available on this hardware. Check the G-code for tool index out of range (T0-T4)."); ////MSG_DESC_INVALID_TOOL c=20 r=8
+static const char MSG_DESC_INVALID_TOOL[] PROGMEM_I1 = ISTR("Requested filament tool is not available on this hardware. Check the G-code for tool index out of range (T0-T12)."); ////MSG_DESC_INVALID_TOOL c=20 r=8
 static const char MSG_DESC_QUEUE_FULL[] PROGMEM_I1 = ISTR("MMU Firmware internal error, please reset the MMU."); ////MSG_DESC_QUEUE_FULL c=20 r=8
 static const char MSG_DESC_FW_RUNTIME_ERROR[] PROGMEM_I1 = ISTR("Internal runtime error. Try resetting the MMU or updating the firmware."); ////MSG_DESC_FW_RUNTIME_ERROR c=20 r=8
 static const char MSG_DESC_UNLOAD_MANUALLY[] PROGMEM_I1 = ISTR("Filament detected unexpectedly. Ensure no filament is loaded. Check the sensors and wiring."); ////MSG_DESC_UNLOAD_MANUALLY c=20 r=8

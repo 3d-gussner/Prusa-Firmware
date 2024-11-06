@@ -119,7 +119,7 @@ extern bool menu_item_leave();
 extern void menu_item_function_P(const char* str, menu_func_t func);
 
 #define MENU_ITEM_FUNCTION_NR_P(str, number, func, fn_par) do { menu_item_function_P(str, number, func, fn_par); } while (0)
-extern void menu_item_function_P(const char* str, char number, void (*func)(uint8_t), uint8_t fn_par);
+extern void menu_item_function_P(const char* str, const int8_t number, void (*func)(uint8_t), uint8_t fn_par);
 
 #define MENU_ITEM_TOGGLE_P(str, toggle, func) do { menu_item_toggle_P(str, toggle, func, 0x02); } while (0)
 #define MENU_ITEM_TOGGLE(str, toggle, func) do { menu_item_toggle_P(str, toggle, func, 0x00); } while (0)

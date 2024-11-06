@@ -354,7 +354,7 @@ void lcdui_print_feedrate(void)
 	lcd_space(8 - chars);
 }
 
-// Print percent done in form "USB---%", " SD---%", "   ---%" (7 chars total)
+// Print percent done in form " HO---%", " SD---%", "   ---%" (7 chars total)
 void lcdui_print_percent_done(void)
 {
 	const char* src = usb_timer.running()?_N(" HO"):(IS_SD_PRINTING?_N(" SD"):_N("   "));
@@ -406,15 +406,20 @@ void lcdui_print_percent_done(void)
 //              This scenario should not be possible and indicates a bug in the firmware
 uint8_t lcdui_print_extruder(void) {
     uint8_t chars = 1;
-    lcd_space(1);
+//    printf_P(PSTR("DBG:MMU2::mmu2.get_current_tool() = %d\n"), MMU2::mmu2.get_current_tool());
+//    printf_P(PSTR("DBG:MMU2::mmu2.get_tool_change_tool() = %d\n"), MMU2::mmu2.get_tool_change_tool());
     if (MMU2::mmu2.get_current_tool() == MMU2::mmu2.get_tool_change_tool()) {
+        lcd_space(1);
         lcd_putc('F');
-        lcd_putc(MMU2::mmu2.get_current_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? '?' : MMU2::mmu2.get_current_tool() + '1');
+        lcd_print(MMU2::mmu2.get_current_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? -1 : MMU2::mmu2.get_current_tool() + 1);
         chars += 2;
     } else {
-        lcd_putc(MMU2::mmu2.get_current_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? '?' : MMU2::mmu2.get_current_tool() + '1');
+        if(MMU2::mmu2.get_current_tool() < 9 || MMU2::mmu2.get_tool_change_tool() <9 ) {
+            lcd_space(1);
+        }
+        lcd_print(MMU2::mmu2.get_current_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? -1 : MMU2::mmu2.get_current_tool() + 1);
         lcd_putc('>');
-        lcd_putc(MMU2::mmu2.get_tool_change_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? '?' : MMU2::mmu2.get_tool_change_tool() + '1');
+        lcd_print(MMU2::mmu2.get_tool_change_tool() == (uint8_t)MMU2::FILAMENT_UNKNOWN ? -1 : MMU2::mmu2.get_tool_change_tool() + 1);
         chars += 3;
     }
     return chars;
@@ -681,15 +686,16 @@ void lcdui_print_status_screen(void)
 	lcdui_print_percent_done();
 
     if (MMU2::mmu2.Enabled()) {
-        // Print extruder status (5 chars)
+        // Print extruder status (6 chars)
         lcd_space(5 - lcdui_print_extruder());
     } else if (farm_mode) {
-        // Print farm number (5 chars)
+        // Print farm number (6 chars)
         lcdui_print_farm();
     } else {
-        lcd_space(5); // 5 spaces
+        lcd_space(6); // 5 spaces
     }
 
+	lcd_set_cursor(12, 2); //line 2
 #ifdef CMD_DIAGNOSTICS
     //Print cmd queue diagnostics (8chars)
 	lcdui_print_cmd_diag();
@@ -4735,7 +4741,7 @@ static void lcd_disable_farm_mode()
 }
 
 static inline void load_all_wrapper(){
-    for(uint8_t i = 0; i < 5; ++i){
+    for(uint8_t i = 0; i < MMU_FILAMENT_COUNT; ++i){
         MMU2::mmu2.load_filament(i);
     }
 }
@@ -4749,7 +4755,7 @@ static void mmu_preload_filament_menu() {
     MENU_ITEM_BACK_P(_T(MSG_MAIN));
     MENU_ITEM_FUNCTION_P(_T(MSG_LOAD_ALL), load_all_wrapper);
     for (uint8_t i = 0; i < MMU_FILAMENT_COUNT; i++)
-        MENU_ITEM_FUNCTION_NR_P(_T(MSG_LOAD_FILAMENT), i + '1', load_filament_wrapper, i);
+        MENU_ITEM_FUNCTION_NR_P(_T(MSG_LOAD_FILAMENT), i + 1, load_filament_wrapper, i);
     MENU_END();
 }
 
@@ -4781,7 +4787,7 @@ static void mmu_common_choose_filament_menu(const char * label, void (*menuActio
     );
     MENU_ITEM_BACK_P(_T(MSG_MAIN));
     for (uint8_t i = 0; i < MMU_FILAMENT_COUNT; i++)
-        MENU_ITEM_FUNCTION_NR_P(label, i + '1', menuAction, i);
+        MENU_ITEM_FUNCTION_NR_P(label, i + 1, menuAction, i);
     MENU_END();
 }
 
@@ -4812,7 +4818,7 @@ static void mmu_cut_filament_menu() {
 #endif //MMU_HAS_CUTTER
 
 static inline void loading_test_all_wrapper(){
-    for(uint8_t i = 0; i < 5; ++i){
+    for(uint8_t i = 0; i < MMU_FILAMENT_COUNT; ++i){
         MMU2::mmu2.loading_test(i);
     }
 
@@ -4835,7 +4841,7 @@ static void mmu_loading_test_menu() {
     MENU_ITEM_BACK_P(_T(MSG_MAIN));
     MENU_ITEM_FUNCTION_P(_T(MSG_LOAD_ALL), loading_test_all_wrapper);
     for (uint8_t i = 0; i < MMU_FILAMENT_COUNT; i++)
-        MENU_ITEM_FUNCTION_NR_P(_T(MSG_LOAD_FILAMENT), i + '1', loading_test_wrapper, i);
+        MENU_ITEM_FUNCTION_NR_P(_T(MSG_LOAD_FILAMENT), i + 1, loading_test_wrapper, i);
     MENU_END();
 }
 

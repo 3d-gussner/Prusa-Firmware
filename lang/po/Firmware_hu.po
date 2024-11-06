@@ -1735,9 +1735,9 @@ msgstr "Atnevezes"
 #: ../../Firmware/mmu2/errors_list.h:281 ../../Firmware/mmu2/errors_list.h:335
 msgid ""
 "Requested filament tool is not available on this hardware. Check the G-code "
-"for tool index out of range (T0-T4)."
+"for tool index out of range (T0-T12)."
 msgstr ""
-"A kert szerszam nem erheto el ezen a hardveren. Nezd meg az T0-T4 indexen "
+"A kert szerszam nem erheto el ezen a hardveren. Nezd meg az T0-T12 indexen "
 "kivuli ertekeket a G kodban."
 
 #. MSG_RESET c=14

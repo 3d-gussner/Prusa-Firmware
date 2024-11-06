@@ -1767,7 +1767,7 @@ msgstr ""
 #: ../../Firmware/mmu2/errors_list.h:281 ../../Firmware/mmu2/errors_list.h:335
 msgid ""
 "Requested filament tool is not available on this hardware. Check the G-code "
-"for tool index out of range (T0-T4)."
+"for tool index out of range (T0-T12)."
 msgstr ""
 
 #. MSG_RESET c=14

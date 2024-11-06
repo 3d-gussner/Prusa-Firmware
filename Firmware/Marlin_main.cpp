@@ -7871,7 +7871,7 @@ void process_commands()
         M701 [ P | T | L | Z ]
 
     #### Parameters
-    - `P` - n index of MMU slot (zero based, so 0-4 like T0 and T4)
+    - `P` - n index of MMU slot (zero based, so 0-4 like T0 and T12)
     - `T` - Alias of `P`. Used for compatibility with Marlin
     - `L` - Extrude distance for insertion (positive value)(manual reload)
     - `Z` - Move the Z axis by this distance. Default value is 0 to maintain backwards compatibility with older gcodes.
@@ -7943,7 +7943,7 @@ void process_commands()
         M704 [ P ]
 
     #### Parameters
-    - `P` - n index of slot (zero based, so 0-4 like T0 and T4)
+    - `P` - n index of slot (zero based, so 0-4 like T0 and T12)
     */
     case 704:
     {
@@ -7958,7 +7958,7 @@ void process_commands()
         M705 [ P ]
 
     #### Parameters
-    - `P` - n index of slot (zero based, so 0-4 like T0 and T4)
+    - `P` - n index of slot (zero based, so 0-4 like T0 and T12)
     */
     case 705:
     {
@@ -7974,7 +7974,7 @@ void process_commands()
         M706 [ P ]
 
     #### Parameters
-    - `P` - n index of slot (zero based, so 0-4 like T0 and T4)
+    - `P` - n index of slot (zero based, so 0-4 like T0 and T12)
     */
     case 706:
     {
@@ -8115,7 +8115,7 @@ void process_commands()
   // end if(code_seen('M')) (end of M codes)
   /*!
   -----------------------------------------------------------------------------------------
-  T<extruder nr.> - select extruder in case of multi extruder printer. Selects filament position 1-5 (T0-T4) in case of MMU.
+  T<extruder nr.> - select extruder in case of multi extruder printer. Selects filament position 1-5 (T0-T12) in case of MMU.
 
   For MMU2/S / MMU3:
     T<extruder nr.> - Selects the filament position. A Gcode to load a filament to the nozzle must follow.

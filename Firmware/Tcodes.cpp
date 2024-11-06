@@ -12,7 +12,7 @@
 static const char duplicate_Tcode_ignored[] PROGMEM = "Duplicate T-code ignored.";
 
 inline bool IsInvalidTCode(char *const s, uint8_t i) {
-    return ((s[i] < '0' || s[i] > '4') && s[i] != '?' && s[i] != 'x' && s[i] != 'c');
+    return ((s[i] < '0' || s[i] > '9') && s[i] != '?' && s[i] != 'x' && s[i] != 'c');
 }
 
 inline void TCodeInvalid() {
@@ -38,7 +38,7 @@ void TCodes(char *const strchr_pointer, const uint8_t codeValue) {
         if (MMU2::mmu2.Enabled()) {
             MMU2::mmu2.tool_change(strchr_pointer[index], MMU2::mmu2.get_current_tool());
         }
-    } else { // Process T0 ... T4
+    } else { // Process T0 ... T12
         if (MMU2::mmu2.Enabled()) {
             if (codeValue == MMU2::mmu2.get_current_tool()){
                 // don't execute the same T-code twice in a row
