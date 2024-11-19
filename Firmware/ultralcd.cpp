@@ -857,14 +857,8 @@ void lcd_commands()
                 lay1cal_meander(layer_height, extrusion_width);
                 break;
             case 6:
-                lay1cal_square(layer_height, extrusion_width);
-                break;
             case 5:
-                lay1cal_square(layer_height, extrusion_width);
-                break;
             case 4:
-                lay1cal_square(layer_height, extrusion_width);
-                break;
             case 3:
                 lay1cal_square(layer_height, extrusion_width);
                 break;
