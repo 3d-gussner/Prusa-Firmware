@@ -423,7 +423,7 @@
  HOST FEATURES
  *------------------------------------*/
 
-// Uncomment if the host supports '//action:shutdown'. It will add "Shutdown host" to the LCD meun. 
+// Uncomment if the host supports '//action:shutdown'. It will add "Shutdown host" to the LCD menu.
 //#define HOST_SHUTDOWN
 
 // Uncomment if the host doesn't support '//action:ready' & '//action:notready'.
